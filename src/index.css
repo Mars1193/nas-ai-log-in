@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 11 11 21; /* deep-space */
+  --foreground: 232 233 243; /* silver-mist */
+  
+  --card: 26 27 62; /* cosmic-blue */
+  --card-foreground: 232 233 243;
+  
+  --popover: 26 27 62;
+  --popover-foreground: 232 233 243;
+  
+  --primary: 0 240 255; /* neon-cyan */
+  --primary-foreground: 11 11 21;
+  
+  --secondary: 176 38 255; /* electric-violet */
+  --secondary-foreground: 232 233 243;
+  
+  --muted: 42 43 74; /* steel-gray */
+  --muted-foreground: 148 163 184;
+  
+  --accent: 176 38 255;
+  --accent-foreground: 232 233 243;
+  
+  --destructive: 239 68 68;
+  --destructive-foreground: 248 250 252;
+  
+  --border: 42 43 74;
+  --input: 42 43 74;
+  --ring: 0 240 255;
+  
+  --radius: 0.75rem;
+  
+  /* Custom CSS variables for animations */
+  --neon-cyan: #00F0FF;
+  --electric-violet: #B026FF;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  color: hsl(var(--foreground));
+  background: hsl(var(--background));
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Dark futuristic theme base */
+body {
+  background: linear-gradient(135deg, #0B0B15 0%, #1A1B3E 50%, #0B0B15 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Cyber grid background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon-cyan), var(--electric-violet));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--electric-violet), var(--neon-cyan));
+}
+
+/* Glow effects */
+.glow-text {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
+}
+
+.glow-border {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5), inset 0 0 20px rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+.glow-border-violet {
+  box-shadow: 0 0 20px rgba(176, 38, 255, 0.5), inset 0 0 20px rgba(176, 38, 255, 0.1);
+  border: 1px solid rgba(176, 38, 255, 0.3);
+}
+
+/* Futuristic button styles */
+.btn-futuristic {
+  position: relative;
+  background: linear-gradient(45deg, transparent, rgba(0, 240, 255, 0.1), transparent);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: var(--neon-cyan);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.btn-futuristic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-futuristic:hover::before {
+  left: 100%;
+}
+
+.btn-futuristic:hover {
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+  border-color: var(--neon-cyan);
+  color: white;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  font-family: 'Noto Sans Arabic', sans-serif;
+}
+
+[dir="rtl"] .font-sans {
+  font-family: 'Noto Sans Arabic', sans-serif;
+}
+
+/* AI Card animations */
+.ai-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(26, 27, 62, 0.6), rgba(42, 43, 74, 0.4));
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.ai-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 10px 30px rgba(0, 240, 255, 0.2),
+    0 0 50px rgba(176, 38, 255, 0.1);
+  border-color: rgba(0, 240, 255, 0.5);
+}
+
+/* Hologram effect */
+.hologram {
+  position: relative;
+  background: linear-gradient(45deg, 
+    rgba(0, 240, 255, 0.1) 0%, 
+    rgba(176, 38, 255, 0.1) 50%, 
+    rgba(0, 240, 255, 0.1) 100%);
+  background-size: 200% 200%;
+  animation: hologram-shift 3s ease-in-out infinite;
+}
+
+@keyframes hologram-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Loading animations */
+.loading-dots::after {
+  content: '';
+  animation: loading-dots 1.5s infinite;
+}
+
+@keyframes loading-dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60%, 100% { content: '...'; }
+}
+
+/* Matrix rain effect for background */
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.matrix-bg::before {
+  content: '01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101';
+  position: absolute;
+  top: -100vh;
+  left: 0;
+  width: 100%;
+  height: 200vh;
+  color: rgba(0, 240, 255, 0.05);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.2;
+  animation: matrix-rain 15s linear infinite;
+  word-wrap: break-word;
+}
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .ai-card {
+    border-color: var(--neon-cyan);
+  }
+  
+  .glow-text {
+    text-shadow: none;
+    color: var(--neon-cyan);
+  }
+}
