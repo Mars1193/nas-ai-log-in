@@ -1,84 +1,97 @@
-import { useState, FormEvent } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '@/lib/supabase';
 
-export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const { signInWithPassword } = useAuth();
-  const navigate = useNavigate();
+const LoginPage = () => {
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError(null);
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        setError(null);
 
-    try {
-      const { error } = await signInWithPassword(email, password);
-      if (error) {
-        throw error;
-      }
-      navigate('/');
-    } catch (err: any) {
-      setError(err.message || 'An unexpected error occurred.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+        try {
+            const { error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password,
+            });
 
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription>Enter your credentials to access your account</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={isLoading}
-              />
+            if (error) {
+                throw error;
+            }
+            
+            navigate('/profile');
+
+        } catch (error: any) {
+            setError(error.error_description || error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <div className="min-h-screen bg-[#050816] text-white flex flex-col md:flex-row">
+            {/* Video Section */}
+            <div className="w-full md:w-1/2 h-64 md:h-screen relative overflow-hidden">
+                <video
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                    src="https://placehold.co/1080x1920.mp4?text=Login+Video"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                />
+                <div className="absolute inset-0 bg-black/50"></div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                disabled={isLoading}
-              />
+
+            {/* Form Section */}
+            <div className="w-full md:w-1/2 flex items-center justify-center p-4">
+                <div className="w-full max-w-md p-8 space-y-6 bg-[#0A0F2B] rounded-xl shadow-lg border border-slate-800">
+                    <h1 className="text-3xl font-bold text-center gradient-text">Welcome Back</h1>
+                    <form onSubmit={handleLogin} className="space-y-6">
+                        <div>
+                            <label className="text-sm font-bold text-gray-400 block mb-1">Email</label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="w-full p-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00F0FF]"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="text-sm font-bold text-gray-400 block mb-1">Password</label>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="w-full p-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00F0FF]"
+                                required
+                            />
+                        </div>
+                        {error && <p className="text-center text-sm text-red-500">{error}</p>}
+                        <button 
+                            type="submit" 
+                            disabled={loading}
+                            className="w-full px-8 py-4 font-bold rounded-lg bg-gradient-to-r from-[#00F0FF] to-[#B026FF] text-white disabled:opacity-50 hover:scale-105 transition-transform duration-300"
+                        >
+                            {loading ? 'Signing In...' : 'Sign In'}
+                        </button>
+                    </form>
+                    <p className="text-center text-sm text-gray-400">
+                        Don't have an account?{' '}
+                        <a href="/signup" className="font-medium text-[#00F0FF] hover:underline">
+                            Sign Up
+                        </a>
+                    </p>
+                </div>
             </div>
-            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Logging in...' : 'Login'}
-            </Button>
-          </form>
-        </CardContent>
-        <CardFooter className="text-center text-sm">
-          <p>
-            Don't have an account?{' '}
-            <Link to="/signup" className="text-blue-600 hover:underline">
-              Sign up
-            </Link>
-          </p>
-        </CardFooter>
-      </Card>
-    </div>
-  );
-}
+        </div>
+    );
+};
+
+export default LoginPage;

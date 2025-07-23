@@ -91,7 +91,7 @@ const DialogClose = ({ onClick }) => (
 const products = [
     {
         id: 'accountant', titleKey: 'accountantTitle', category: 'finance',
-        description: 'Performs all tasks of a human accounting manager and more, with real-time analysis and continuous learning.',
+        description: 'An intelligent financial expert that automates bookkeeping, manages payroll, and provides real-time financial analysis, ensuring accuracy and compliance.',
         capabilities: ['Financial Analysis', 'Invoice Management', 'Payroll Processing', 'Compliance Monitoring'],
         price: 15000,
         specs: {
@@ -101,7 +101,7 @@ const products = [
     },
     {
         id: 'hr-manager', titleKey: 'hrManagerTitle', category: 'support',
-        description: 'Automates the entire employee lifecycle, from onboarding to offboarding, ensuring legal compliance and efficient management.',
+        description: 'Streamlines human resources by automating recruitment, managing employee data, and facilitating seamless onboarding and offboarding processes.',
         capabilities: ['Recruitment Analysis', 'Leave Management', 'Performance Tracking', 'Policy Enforcement'],
         price: 18000,
         specs: {
@@ -111,7 +111,7 @@ const products = [
     },
     {
         id: 'customer-service', titleKey: 'customerServiceTitle', category: 'support',
-        description: 'Provides 24/7 customer support with natural, empathetic conversations and instant issue resolution.',
+        description: 'Provides instant, 24/7 customer support with natural language understanding, resolving queries efficiently and enhancing customer satisfaction.',
         capabilities: ['Multi-language Support', 'Sentiment Analysis', 'Automated Ticketing', 'Instant Resolution'],
         price: 12000,
         specs: {
@@ -151,7 +151,7 @@ const products = [
     },
     {
         id: 'legal-assistant', titleKey: 'legalAssistantTitle', category: 'analytics',
-        description: 'Processes vast amounts of legal text for contract review, e-discovery, and case research.',
+        description: 'Accelerates legal research, analyzes contracts, and assists with document review, empowering legal professionals with advanced AI capabilities.',
         capabilities: ['Contract Analysis', 'Legal Research', 'e-Discovery', 'Case Management'],
         price: 22000,
         specs: {
@@ -184,8 +184,8 @@ const products = [
 // 3. Translations
 const translations = {
   en: {
-    'nav.showroom': 'The Showroom',
-    'showroom.description': 'Explore your future workforce. Each unit is a complete, on-premise AI employee, ready to transform your business from day one.',
+    'nav.showroom': 'The Future Workforce: AI Employees',
+    'showroom.description': 'Discover our specialized AI models, ready to integrate and revolutionize your business operations.',
     'showroom.searchPlaceholder': 'Search by role or function...',
     'showroom.all': 'All', 'showroom.finance': 'Finance', 'showroom.sales': 'Sales', 'showroom.support': 'Support', 'showroom.analytics': 'Analytics',
     'showroom.showingResults': (f, t) => `Displaying ${f} of ${t} AI Employees`,
@@ -199,8 +199,8 @@ const translations = {
     accountantTitle: "AI Accountant", hrManagerTitle: "AI HR Manager", customerServiceTitle: "AI Customer Service", medicalAssistantTitle: "AI Medical Assistant", executiveAssistantTitle: "AI Executive Assistant", coordinatorTitle: "AI Coordinator", legalAssistantTitle: "AI Legal Assistant", purchasingSpecialistTitle: "AI Purchasing Specialist", businessAssistantTitle: "AI Business Assistant",
   },
   ar: {
-    'nav.showroom': 'صالة العرض',
-    'showroom.description': 'استكشف قوة العمل المستقبلية. كل وحدة هي موظف ذكاء اصطناعي متكامل ومحلي، جاهز لتحويل أعمالك من اليوم الأول.',
+    'nav.showroom': 'القوى العاملة المستقبلية: موظفو الذكاء الاصطناعي',
+    'showroom.description': 'اكتشف نماذج الذكاء الاصطناعي المتخصصة لدينا، الجاهزة للاندماج وإحداث ثورة في عمليات عملك.',
     'showroom.searchPlaceholder': 'ابحث بالمنصب أو الوظيفة...',
     'showroom.all': 'الكل', 'showroom.finance': 'المالية', 'showroom.sales': 'المبيعات', 'showroom.support': 'الدعم', 'showroom.analytics': 'التحليلات',
     'showroom.showingResults': (f, t) => `عرض ${f} من ${t} موظف ذكي`,
@@ -401,13 +401,20 @@ export const ShowroomPage = () => {
                     <Card className="h-full hover:border-cyan-400/50 transition-colors group flex flex-col border-white/10">
                       <div className="flex-grow">
                           <div className="text-center mb-6">
-                              <div className="w-48 h-32 mx-auto mb-4 rounded-lg bg-slate-900 flex items-center justify-center border-2 border-purple-500/50 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
-                                  <img src={`https://placehold.co/400x250/0B0B15/B026FF?text=${encodeURIComponent(employee.name_en)}`} alt={employee.name_en} className="w-full h-full object-cover"/>
-                              </div>
-                              <h3 className="font-bold text-2xl text-white">{language === 'ar' ? employee.name_ar : employee.name_en}</h3>
-                              <p className="text-purple-400 font-medium">{language === 'ar' ? employee.title_ar : employee.title_en}</p>
+                              {/* Replaced img with video */}
+                              <video
+                                  src={`https://placehold.co/400x250.mp4?text=${encodeURIComponent(employee.name_en.replace(/ /g, '+'))}`}
+                                  autoPlay
+                                  loop
+                                  muted
+                                  playsInline
+                                  className="w-full h-full object-cover rounded-lg mb-4"
+                              >
+                                  Your browser does not support the video tag.
+                              </video>
                           </div>
-                          <p className="text-white/70 text-sm mb-6 text-center h-20">{language === 'ar' ? employee.description_ar : employee.description_en}</p>
+                          <h3 className="font-bold text-2xl text-white">{language === 'ar' ? employee.name_ar : employee.name_en}</h3>
+                          <p className="text-purple-400 font-medium">{language === 'ar' ? employee.title_ar : employee.title_en}</p>
                       </div>
                       <div className="mt-auto pt-6 border-t border-white/10">
                           <Button onClick={() => setSelectedProduct(employee)} className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold">

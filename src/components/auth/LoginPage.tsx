@@ -1,7 +1,6 @@
-
 import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
-import { Mail, Zap } from 'lucide-react';
+import { Mail, Lock, Zap } from 'lucide-react';
 
 // Re-using components from AuthPage.tsx for consistency
 const Button = ({ children, className = '', ...props }: any) => (
@@ -28,6 +27,7 @@ const Label = ({ children, className = '', ...props }: any) => (
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { login } = useAuth();
@@ -37,8 +37,9 @@ export const LoginPage = () => {
     setLoading(true);
     setError(null);
     try {
-      await login(email);
-      alert('Check your email for the login link!');
+      await login(email, password);
+      // On successful login, you might want to redirect the user
+      // e.g., navigate('/dashboard');
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -81,6 +82,22 @@ export const LoginPage = () => {
                   placeholder="Your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+            </div>
+            <div>
+              <Label htmlFor="password">Password</Label>
+              <div className="mt-1 relative">
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-silver-mist/50" />
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  placeholder="Your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="pl-10"
                 />
               </div>

@@ -1,40 +1,32 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from '@/components/Layout';
+import Layout from './components/Layout';
 import HomePage from "./pages/HomePage";
-import { ShowroomPage } from './pages/ShowroomPage';
-import ServicesPage from './pages/ServicesPage';
-import ROICalculatorPage from './pages/ROICalculatorPage';
-import PhilosophyPage from './pages/PhilosophyPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
-import NotFound from './pages/NotFound';
-import ContactPage from './pages/ContactPage';
-import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
-import { ProfilePage } from '@/components/auth/ProfilePage';
+import ProfilePage from './pages/ProfilePage';
+import ResearchPage from './pages/ResearchPage';
+import DashboardPage from './pages/DashboardPage';
+import { ProtectedRoute } from './components/auth/ProtectedRoute';
 
 function App() {
   return (
     <Router>
       <Routes>
+        {/* Routes without Layout */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
 
-        {/* Pages with Layout */}
+        {/* Routes with Layout */}
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/showroom" element={<ShowroomPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/roi-calculator" element={<ROICalculatorPage />} />
-          <Route path="/philosophy" element={<PhilosophyPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/research" element={<ResearchPage />} />
 
           {/* Protected Routes */}
           <Route element={<ProtectedRoute />}>
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
           </Route>
         </Route>
-
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

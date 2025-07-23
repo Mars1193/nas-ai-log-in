@@ -1,0 +1,1 @@
+import styles from './VideoBackground.module.css';const VideoBackground = () => {  return (    <div className={styles.videoContainer}>      <video        src="/videos/employee_video.mp4"        className={styles.video}        autoPlay        loop        muted      />    </div>  );};export default VideoBackground;
