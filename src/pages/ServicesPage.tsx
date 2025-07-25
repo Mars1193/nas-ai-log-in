@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Placeholder data for AI Employees - to be provided by the user
 const aiEmployees = [
   {
@@ -72,7 +70,7 @@ const ServicesPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">منصة المايسترو: تحكم كامل، إدارة مبسطة</h2>
           <p className="max-w-3xl mx-auto text-lg md:text-xl text-gray-600 dark:text-gray-300">
-            كل قائد يحتاج إلى منصة قيادة. منصة "المايسترو" هي الأداة التي تمنحك رؤية شاملة وتحكمًا كاملاً في جميع موظفيك الرقميين. من خلال واجهة واحدة سهلة الاستخدام، يمكنك تعيين المهام، ومراقبة الأداء، وتحليل النتائج، وتوجيه فريقك الرقمي لتحقيق أقصى إمكاناتهم.
+            كل قائد يحتاج إلى منصة قيادة. منصتنا هي منصة القيادة الخاصة بك. من خلالها، تحصل على رؤية شاملة لكل العمليات، وبإشارة بسيطة منك - أمر، أو نقرة - يمكنك توجيه الأوركسترا بأكملها لتحقيق أقصى إمكاناتهم.
           </p>
         </div>
       </div>

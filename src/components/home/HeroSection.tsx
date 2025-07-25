@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence, Variants, Transition } from 'framer-motion';
 import { Button } from '../ui/button';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -48,14 +48,14 @@ const HeroSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } as Transition }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" as any } as Transition }
   };
 
   const scrollDown = () => {
@@ -88,7 +88,7 @@ const HeroSection = () => {
             <motion.p className="text-xl text-white/80 mb-8 max-w-xl mx-auto lg:mx-0">
               {t('digitalMind')}
             </motion.p>
-            <motion.div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end pt-4">
+            <motion.div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-end pt-4">
               <Button size="lg" className="shadow-2xl transform hover:scale-105" onClick={() => navigate('/showroom')}>
                 {t('humanAvatar')}
               </Button>
@@ -101,13 +101,13 @@ const HeroSection = () => {
           <motion.div variants={itemVariants} className="relative flex justify-center lg:justify-end">
             <div className="relative w-full max-w-md h-96 bg-slate-800/50 rounded-3xl border border-white/10 backdrop-blur-lg flex items-center justify-center p-8">
                 <div className="text-center">
-                    <div className="w-24 h-24 bg-gray-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <div className="w-24 h-24 bg-gray-700 rounded-full mx-auto mb-6 flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 110-14 7 7 0 010 14z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 110-14 7 7 0 010 14z" />
                         </svg>
                     </div>
-                    <h3 className="text-xl font-bold">أفاتار بشري</h3>
-                    <p className="text-white/70">يقدم تقرير العمل بفاعلية</p>
+                    <h3 className="text-xl font-bold">{t('humanAvatar')}</h3>
+                    <p className="text-white/70">{t('reportCompleted')}</p>
                 </div>
             </div>
           </motion.div>

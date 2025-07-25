@@ -1,14 +1,13 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { User, Settings, History, LogOut } from 'lucide-react';
 
 export const ProfilePage = () => {
-    const { user, logout } = useAuth();
+    const { user, signOut } = useAuth(); // Changed logout to signOut
     const navigate = useNavigate();
 
     const handleLogout = async () => {
-        await logout();
+        await signOut(); // Changed logout to signOut
         navigate('/login');
     };
 

@@ -67,7 +67,7 @@ export function useROICalculator() {
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState<ROIResult | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const { user } = useAuth()
+  const { user } = useAuth() // Keep user if it's intended to be used later, otherwise remove
 
   const calculateROI = async (
     currentStaffData: StaffMember[],

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { useAuth } from '@/contexts/AuthContext'; // Import useAuth
 
 const SignupPage = () => {
     const [fullName, setFullName] = useState('');
@@ -9,29 +9,19 @@ const SignupPage = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [message, setMessage] = useState<string | null>(null);
+    const { signup } = useAuth(); // Use signup from AuthContext
 
-    const handleSignup = async (e: React.FormEvent) => {
+    const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => { // Added type for e
         e.preventDefault();
         setLoading(true);
         setError(null);
         setMessage(null);
 
         try {
-            const { error } = await supabase.auth.signUp({
-                email: email,
-                password: password,
-                options: {
-                    data: {
-                        full_name: fullName,
-                        username: username,
-                    },
-                },
-            });
-
-            if (error) throw error;
+            await signup(email, password, { data: { full_name: fullName, username: username } }); // Use signup function from AuthContext
             setMessage('Please check your email to verify your account.');
         } catch (error: any) {
-            setError(error.error_description || error.message);
+            setError(error.message);
         } finally {
             setLoading(false);
         }

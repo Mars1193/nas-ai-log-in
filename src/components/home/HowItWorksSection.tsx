@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
@@ -59,7 +58,7 @@ const HowItWorksSection = () => {
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {howItWorksSteps.map((step, index) => (
+          {howItWorksSteps.map((step: HowItWorksStep, index: number) => (
             <motion.div
               key={step.id}
               initial={{ opacity: 0, y: 30 }}

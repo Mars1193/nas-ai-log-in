@@ -1,5 +1,13 @@
 import { useState, useEffect } from 'react'
-import { supabase, AIEmployee } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase'
+
+// Define AIEmployee interface locally if it's not exported from supabase.ts
+interface AIEmployee {
+  id: number;
+  name: string;
+  description: string;
+  // Add other properties of AIEmployee as needed
+}
 
 export function useAIEmployees() {
   const [employees, setEmployees] = useState<AIEmployee[]>([])

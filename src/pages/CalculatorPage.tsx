@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -67,10 +67,10 @@ export function CalculatorPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            {t('calculator.title')}
+            {t('calculator.title', language)}
           </motion.h1>
           <p className="text-lg text-silver-mist/70 max-w-2xl mx-auto">
-            {t('calculator.subtitle')}
+            {t('calculator.subtitle', language)}
           </p>
         </div>
 
@@ -79,40 +79,40 @@ export function CalculatorPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-xl font-bold text-silver-mist">
                 <Calculator className="h-6 w-6 text-neon-cyan" />
-                {t('calculator.title')}
+                {t('calculator.title', language)}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="current-cost">{'Current Monthly Staff Cost'}</Label>
+                  <Label htmlFor="current-cost">{t('calculator.currentMonthlyStaffCost', language)}</Label>
                   <Input
                     id="current-cost"
                     type="number"
                     value={currentMonthlyStaffCost}
-                    onChange={(e) => setCurrentMonthlyStaffCost(Number(e.target.value))}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCurrentMonthlyStaffCost(Number(e.target.value))}
                     className="mt-1"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="staff-number">{'Number of Staff'}</Label>
+                  <Label htmlFor="staff-number">{t('calculator.numberOfStaff', language)}</Label>
                   <Input
                     id="staff-number"
                     type="number"
                     value={numberOfStaff}
-                    onChange={(e) => setNumberOfStaff(Number(e.target.value))}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNumberOfStaff(Number(e.target.value))}
                     className="mt-1"
                   />
                 </div>
               </div>
 
               <div>
-                <Label htmlFor="ai-cost">{'AI Employee Monthly Cost'}</Label>
+                <Label htmlFor="ai-cost">{t('calculator.aiEmployeeMonthlyCost', language)}</Label>
                 <Input
                   id="ai-cost"
                   type="number"
                   value={aiEmployeeMonthlyCost}
-                  onChange={(e) => setAiEmployeeMonthlyCost(Number(e.target.value))}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAiEmployeeMonthlyCost(Number(e.target.value))}
                   className="mt-1"
                 />
               </div>
@@ -121,17 +121,17 @@ export function CalculatorPage() {
                 onClick={handleCalculateROI}
                 className="w-full bg-gradient-to-r from-neon-cyan to-electric-violet hover:from-electric-violet hover:to-neon-cyan text-deep-space font-semibold py-3 text-lg"
               >
-                {t('calculator.calculate')}
+                {t('calculator.calculate', language)}
               </Button>
 
               {projectedMonthlySavings !== null && annualSavings !== null && (
                 <div className="pt-6 space-y-4">
                   <div className="p-4 border border-steel-gray/30 rounded-lg bg-cosmic-blue/30">
-                    <h3 className="text-lg font-medium text-silver-mist">{'Projected Monthly Savings'}</h3>
+                    <h3 className="text-lg font-medium text-silver-mist">{t('calculator.projectedMonthlySavings', language)}</h3>
                     <p className="text-2xl font-bold text-neon-cyan glow-text">{formatCurrency(projectedMonthlySavings)}</p>
                   </div>
                   <div className="p-4 border border-steel-gray/30 rounded-lg bg-cosmic-blue/30">
-                    <h3 className="text-lg font-medium text-silver-mist">{'Annual Savings'}</h3>
+                    <h3 className="text-lg font-medium text-silver-mist">{t('calculator.annualSavings', language)}</h3>
                     <p className="text-2xl font-bold text-electric-violet glow-text">{formatCurrency(annualSavings)}</p>
                   </div>
                 </div>

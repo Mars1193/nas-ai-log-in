@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { User, Mail, Building, Users, MessageSquare, Phone, Mail as MailIcon, HelpCircle } from 'lucide-react';
 
 // --- START: Inlined Dependencies ---
 
 // 1. UI Components (Placeholders)
-const Button = ({ children, size, variant, className, ...props }) => {
+const Button = ({ children, size, variant, className, ...props }: { children: React.ReactNode, size?: string, variant?: string, className?: string, [key: string]: any }) => {
   const sizeClasses = size === 'lg' ? 'px-8 py-4 text-lg' : 'px-6 py-3 text-base';
   return (
     <button className={`font-semibold rounded-lg shadow-lg transform transition-all duration-200 flex items-center justify-center ${sizeClasses} bg-gradient-to-r from-cyan-500 to-blue-600 text-white ${className}`} {...props}>
@@ -13,21 +13,21 @@ const Button = ({ children, size, variant, className, ...props }) => {
     </button>
   );
 };
-const Card = ({ children, className, ...props }) => <div className={`rounded-2xl border bg-slate-800/50 backdrop-blur-sm ${className}`} {...props}>{children}</div>;
-const Input = ({ className, ...props }) => <input className={`w-full px-4 py-3 rounded-lg border bg-slate-900/70 border-white/10 text-white placeholder-white/50 focus:border-cyan-400 focus:ring-cyan-400 focus:outline-none transition-colors ${className}`} {...props} />;
-const Textarea = ({ className, ...props }) => <textarea className={`w-full px-4 py-3 rounded-lg border bg-slate-900/70 border-white/10 text-white placeholder-white/50 focus:border-cyan-400 focus:ring-cyan-400 focus:outline-none transition-colors ${className}`} {...props} />;
+const Card = ({ children, className, ...props }: { children: React.ReactNode, className?: string, [key: string]: any }) => <div className={`rounded-2xl border bg-slate-800/50 backdrop-blur-sm ${className}`} {...props}>{children}</div>;
+const Input = ({ className, ...props }: { className?: string, [key: string]: any }) => <input className={`w-full px-4 py-3 rounded-lg border bg-slate-900/70 border-white/10 text-white placeholder-white/50 focus:border-cyan-400 focus:ring-cyan-400 focus:outline-none transition-colors ${className}`} {...props} />;
+const Textarea = ({ className, ...props }: { className?: string, [key: string]: any }) => <textarea className={`w-full px-4 py-3 rounded-lg border bg-slate-900/70 border-white/10 text-white placeholder-white/50 focus:border-cyan-400 focus:ring-cyan-400 focus:outline-none transition-colors ${className}`} {...props} />;
 
-const Accordion = ({ children }) => <div className="space-y-2">{children}</div>;
-const AccordionItem = ({ children, ...props }) => <div className="border-b border-white/10" {...props}>{children}</div>;
+const Accordion = ({ children }: { children: React.ReactNode }) => <div className="space-y-2">{children}</div>;
+const AccordionItem = ({ children, ...props }: { children: React.ReactNode, [key: string]: any }) => <div className="border-b border-white/10" {...props}>{children}</div>;
 
-const AccordionTrigger = ({ children, onClick, isOpen }) => (
+const AccordionTrigger = ({ children, onClick, isOpen }: { children: React.ReactNode, onClick: () => void, isOpen: boolean }) => (
     <button onClick={onClick} className="w-full text-left flex justify-between items-center py-4 font-semibold text-white hover:text-cyan-400 transition-colors">
         <span>{children}</span>
         <span className={`transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>▼</span>
     </button>
 );
 
-const AccordionContent = ({ children }) => <div className="pb-4 text-white/80 pr-6 pl-2">{children}</div>;
+const AccordionContent = ({ children }: { children: React.ReactNode }) => <div className="pb-4 text-white/80 pr-6 pl-2">{children}</div>;
 
 
 // 2. Translations & Data
@@ -91,11 +91,11 @@ const translations = {
     a4: "تأتي جميع الوحدات مع ضمان شامل لمدة 3 سنوات. ونقدم أيضاً حزم دعم اختيارية على مدار الساعة طوال أيام الأسبوع تضمن تحديثات البرامج العادية للحفاظ على موظفي الذكاء الاصطناعي في أفضل حال.",
   }
 };
-const t = (key, language) => translations[language][key] || key;
+const t = (key: string, language: string) => translations[language as keyof typeof translations][key as keyof typeof translations.en] || key;
 
 // 3. Language Context Hook
 const useLanguage = () => {
-    const [language, setLanguage] = React.useState('en');
+    const [language, setLanguage] = useState('en');
     return { language, setLanguage, isRTL: language === 'ar' };
 };
 
@@ -103,7 +103,7 @@ const useLanguage = () => {
 
 const ContactPage = () => {
     const { language } = useLanguage();
-    const [openFaq, setOpenFaq] = useState(null);
+    const [openFaq, setOpenFaq] = useState<string | null>(null);
 
     const faqItems = [
         { qKey: "q1", aKey: "a1" },
@@ -118,7 +118,7 @@ const ContactPage = () => {
         { icon: MailIcon, titleKey: 'emailUs', detailKey: 'generalInquiries', href: 'mailto:sales@nasglobal-ai.com', contactInfo: 'sales@nasglobal-ai.com' }
     ];
 
-    const handleFaqToggle = (key) => {
+    const handleFaqToggle = (key: string) => {
         setOpenFaq(openFaq === key ? null : key);
     };
 
@@ -151,7 +151,7 @@ const ContactPage = () => {
                         <Card className="border-white/10 p-8">
                             <h3 className="text-2xl font-bold text-white mb-6">{t('directContact', language)}</h3>
                             <div className="space-y-4">
-                                {contactMethods.map(method => (
+                                {contactMethods.map((method: any) => (
                                     <ContactMethod 
                                         key={method.titleKey}
                                         icon={method.icon} 
@@ -166,7 +166,7 @@ const ContactPage = () => {
                         <Card className="border-white/10 p-8">
                             <h3 className="text-2xl font-bold text-white mb-6">{t('faq', language)}</h3>
                             <Accordion>
-                                {faqItems.map(item => (
+                                {faqItems.map((item: any) => (
                                     <AccordionItem key={item.qKey}>
                                         <AccordionTrigger onClick={() => handleFaqToggle(item.qKey)} isOpen={openFaq === item.qKey}>
                                             {t(item.qKey, language)}
@@ -198,21 +198,21 @@ const ContactPage = () => {
 };
 
 // Helper components for the form and contact methods
-const InputField = ({ icon: Icon, name, type = "text", placeholder }) => (
+const InputField = ({ icon: Icon, name, type = "text", placeholder }: { icon: React.ElementType, name: string, type?: string, placeholder: string }) => (
     <div className="relative">
         <Icon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40 pointer-events-none" />
         <Input type={type} name={name} placeholder={placeholder} className="pl-12" />
     </div>
 );
 
-const TextareaField = ({ icon: Icon, name, placeholder }) => (
+const TextareaField = ({ icon: Icon, name, placeholder }: { icon: React.ElementType, name: string, placeholder: string }) => (
     <div className="relative">
         <Icon className="absolute left-4 top-5 w-5 h-5 text-white/40 pointer-events-none" />
         <Textarea name={name} placeholder={placeholder} rows="4" className="pl-12" />
     </div>
 );
 
-const ContactMethod = ({ icon: Icon, title, detail, href, contactInfo }) => (
+const ContactMethod = ({ icon: Icon, title, detail, href, contactInfo }: { icon: React.ElementType, title: string, detail: string, href: string, contactInfo: string }) => (
     <a href={href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 bg-slate-900/50 rounded-lg border border-white/10 hover:border-cyan-400/50 hover:bg-slate-900 transition-all duration-300">
         <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
             <Icon className="w-6 h-6 text-cyan-400" />

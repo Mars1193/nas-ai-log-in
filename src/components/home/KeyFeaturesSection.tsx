@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { features, Feature } from '../../data/mockData';
@@ -26,7 +25,7 @@ const KeyFeaturesSection = () => {
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {features.map((feature) => (
+          {features.map((feature: Feature) => (
             <motion.div
               key={feature.id}
               initial={{ opacity: 0, y: 30 }}

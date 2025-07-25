@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { conceptItems, ConceptItem } from '../../data/mockData';
@@ -45,7 +44,7 @@ const ConceptSection = () => {
                   <p className="text-white/70">{t('reportCompleted')}</p>
                   <div className="bg-green-900/30 border border-green-500/30 rounded-full px-4 py-2 inline-block">
                     <div className="flex items-center">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                      <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
                       <span className="text-green-400 text-sm">{t('activeReady')}</span>
                     </div>
                   </div>
@@ -60,7 +59,7 @@ const ConceptSection = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            {conceptItems.map((item) => (
+            {conceptItems.map((item: ConceptItem) => (
               <div key={item.id} className="flex items-start space-x-4 space-x-reverse">
                 <div className="bg-cyan-500/20 p-3 rounded-lg">
                   {item.icon}

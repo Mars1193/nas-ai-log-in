@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './VideoPlayer.module.css';
 
 // This component will display your employee video

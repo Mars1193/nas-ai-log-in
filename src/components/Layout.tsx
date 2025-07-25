@@ -1,7 +1,6 @@
-import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import { Globe, LogIn, UserPlus, User, LogOut, LayoutDashboard } from 'lucide-react';
+import { Globe, LogIn, UserPlus, LogOut, LayoutDashboard } from 'lucide-react';
 
 const Header = () => {
     const { user, signOut } = useAuth();

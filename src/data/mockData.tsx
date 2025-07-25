@@ -1,5 +1,3 @@
-import React from 'react';
-
 export interface Feature {
   id: string;
   icon: JSX.Element;
@@ -24,7 +22,7 @@ export const features: Feature[] = [
       <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12.385a4 4 0 01-4 4z" />
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21a4 4 0 004-4V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12.385a4 4 0 004 4z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 21a4 4 0 01-4-4V5a2 2 0 014-4h4a2 2 0 012 2v12.385a4 4 0 01-4 4h-4z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 21a4 4 0 01-4-4V5a2 2 0 014-4h4a2 2 0 012 2v14a2 2 0 01-4 4h-4z" />
       </svg>
     ),
     titleKey: "autonomousExecution",

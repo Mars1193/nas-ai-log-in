@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useLanguage } from '@/contexts/LanguageContext'
@@ -15,7 +14,7 @@ import {
 
 export function Footer() {
   const { t } = useTranslation()
-  const { language } = useLanguage()
+  // const { language } = useLanguage() // Removed as it's not used
 
   const footerLinks = {
     product: [

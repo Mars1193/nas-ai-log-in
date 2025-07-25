@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
@@ -44,7 +43,7 @@ const TechnicalSpecsSection = () => {
                   <p className="text-white/80 text-sm mb-4">جهاز كمبيوتر قوي يحتوي على النظام</p>
                   <div className="bg-green-900/30 border border-green-500/30 rounded-full px-4 py-2 inline-block">
                     <div className="flex items-center">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                      <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
                       <span className="text-green-400 text-sm">جاهز للعمل</span>
                     </div>
                   </div>

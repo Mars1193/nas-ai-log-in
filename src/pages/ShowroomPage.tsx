@@ -1,36 +1,12 @@
-import React, { useState, useMemo, Suspense, useEffect, useRef } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, Search, Grid, List, ArrowRight, Zap, CheckCircle, Cpu, Shield, Server, X } from 'lucide-react';
+import { Brain, Search, Grid, List, ArrowRight, Zap, CheckCircle, Cpu, Shield, X } from 'lucide-react';
 
 // --- START: Inlined Dependencies ---
 
-// NOTE: The user's provided working code uses @react-three/fiber.
-// The following are simplified placeholders to ensure the component renders
-// without needing the full 3D library installed in this specific environment.
-// In a real project with these dependencies, these mocks would be removed.
-const Canvas = ({ children }) => <div className="w-full h-full bg-slate-900/50 rounded-full flex items-center justify-center">{children}</div>;
-const OrbitControls = () => null;
-const TorusKnot = (props) => <div className="w-full h-full flex items-center justify-center"><Brain {...props} /></div>;
-const useFrame = (callback) => {
-    const ref = useRef();
-    useEffect(() => {
-        const loop = () => {
-            callback();
-            ref.current = requestAnimationFrame(loop);
-        };
-        ref.current = requestAnimationFrame(loop);
-        return () => {
-            if (ref.current) {
-                cancelAnimationFrame(ref.current);
-            }
-        };
-    }, [callback]);
-};
-
-
 // 1. UI Components: Placeholders for ShadCN components
-const Button = ({ children, size, variant, className, ...props }) => {
+const Button = ({ children, size, variant, className, ...props }: { children: React.ReactNode, size?: string, variant?: string, className?: string, [key: string]: any }) => {
   const sizeClasses = size === 'icon' ? 'w-10 h-10 p-0' : 'px-4 py-2 text-sm';
   const variantClasses = {
     default: 'bg-cyan-500 text-slate-900',
@@ -44,17 +20,17 @@ const Button = ({ children, size, variant, className, ...props }) => {
   );
 };
 
-const Card = ({ children, className, ...props }) => (
+const Card = ({ children, className, ...props }: { children: React.ReactNode, className?: string, [key: string]: any }) => (
   <div className={`p-6 rounded-2xl border bg-slate-800/50 backdrop-blur-sm ${className}`} {...props}>
     {children}
   </div>
 );
 
-const Input = ({ className, ...props }) => (
+const Input = ({ className, ...props }: { className?: string, [key: string]: any }) => (
   <input className={`w-full px-4 py-3 rounded-lg border bg-slate-900/70 border-white/10 text-white placeholder-white/50 focus:border-cyan-400 focus:ring-cyan-400 focus:outline-none transition-colors ${className}`} {...props} />
 );
 
-const Dialog = ({ open, onOpenChange, children }) => {
+const Dialog = ({ open, onOpenChange, children }: { open: boolean, onOpenChange: (open: boolean) => void, children: React.ReactNode }) => {
     if (!open) return null;
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={() => onOpenChange(false)}>
@@ -64,7 +40,7 @@ const Dialog = ({ open, onOpenChange, children }) => {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 className="relative z-50"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e: React.MouseEvent) => e.stopPropagation()}
             >
                 {children}
             </motion.div>
@@ -72,15 +48,15 @@ const Dialog = ({ open, onOpenChange, children }) => {
     );
 };
 
-const DialogContent = ({ children, className }) => (
+const DialogContent = ({ children, className }: { children: React.ReactNode, className?: string }) => (
     <div className={`bg-slate-900 border border-white/10 rounded-2xl shadow-2xl w-full ${className}`}>
         {children}
     </div>
 );
 
-const DialogHeader = ({ children }) => <div className="p-6 border-b border-white/10">{children}</div>;
-const DialogTitle = ({ children }) => <h2 className="text-2xl font-bold text-white">{children}</h2>;
-const DialogClose = ({ onClick }) => (
+const DialogHeader = ({ children }: { children: React.ReactNode }) => <div className="p-6 border-b border-white/10">{children}</div>;
+const DialogTitle = ({ children }: { children: React.ReactNode }) => <h2 className="text-2xl font-bold text-white">{children}</h2>;
+const DialogClose = ({ onClick }: { onClick: () => void }) => (
     <button onClick={onClick} className="absolute top-4 right-4 text-white/70 hover:text-white">
         <X className="w-6 h-6" />
     </button>
@@ -188,7 +164,7 @@ const translations = {
     'showroom.description': 'Discover our specialized AI models, ready to integrate and revolutionize your business operations.',
     'showroom.searchPlaceholder': 'Search by role or function...',
     'showroom.all': 'All', 'showroom.finance': 'Finance', 'showroom.sales': 'Sales', 'showroom.support': 'Support', 'showroom.analytics': 'Analytics',
-    'showroom.showingResults': (f, t) => `Displaying ${f} of ${t} AI Employees`,
+    'showroom.showingResults': (f: number, t: number) => `Displaying ${f} of ${t} AI Employees`,
     'showroom.noResults': 'No Employees Found',
     'showroom.noResultsDescription': 'Your search criteria did not match any of our AI specialists. Please try a different term.',
     'employees.viewDetails': 'View Details & Specs',
@@ -203,7 +179,7 @@ const translations = {
     'showroom.description': 'اكتشف نماذج الذكاء الاصطناعي المتخصصة لدينا، الجاهزة للاندماج وإحداث ثورة في عمليات عملك.',
     'showroom.searchPlaceholder': 'ابحث بالمنصب أو الوظيفة...',
     'showroom.all': 'الكل', 'showroom.finance': 'المالية', 'showroom.sales': 'المبيعات', 'showroom.support': 'الدعم', 'showroom.analytics': 'التحليلات',
-    'showroom.showingResults': (f, t) => `عرض ${f} من ${t} موظف ذكي`,
+    'showroom.showingResults': (f: number, t: number) => `عرض ${f} من ${t} موظف ذكي`,
     'showroom.noResults': 'لم يتم العثور على موظفين',
     'showroom.noResultsDescription': 'لم تتطابق معايير البحث مع أي من متخصصي الذكاء الاصطناعي لدينا. يرجى تجربة مصطلح مختلف.',
     'employees.viewDetails': 'عرض التفاصيل والمواصفات',
@@ -214,15 +190,15 @@ const translations = {
     accountantTitle: "المحاسب الذكي", hrManagerTitle: "مدير الموارد البشرية الذكي", customerServiceTitle: "خدمة العملاء الذكية", medicalAssistantTitle: "المساعد الطبي الذكي", executiveAssistantTitle: "المساعد التنفيذي الذكي", coordinatorTitle: "المنسق الذكي", legalAssistantTitle: "المساعد القانوني الذكي", purchasingSpecialistTitle: "أخصائي المشتريات الذكي", businessAssistantTitle: "المساعد التجاري الذكي",
   }
 };
-const t = (key, language, options) => {
-  const translation = translations[language][key] || key;
-  if (typeof translation === 'function') return translation(options.filtered, options.total);
+const t = (key: string, language: string, options?: { filtered?: number, total?: number }) => {
+  const translation = translations[language as keyof typeof translations][key as keyof typeof translations.en] || key;
+  if (typeof translation === 'function') return translation(options?.filtered, options?.total);
   return translation;
 };
 
 // 4. Language & Data Hooks
 const useLanguage = () => {
-    const [language, setLanguage] = React.useState('en');
+    const [language, setLanguage] = useState('en');
     return { language, setLanguage, isRTL: language === 'ar' };
 };
 const useAIEmployees = () => {
@@ -244,7 +220,7 @@ const useAIEmployees = () => {
 // --- END: Inlined Dependencies ---
 
 // --- NEW COMPONENTS ---
-const ProductModal = ({ product, language, onClose }) => {
+const ProductModal = ({ product, language, onClose }: { product: any, language: string, onClose: () => void }) => {
     if (!product) return null;
     const name = language === 'ar' ? product.name_ar : product.name_en;
     const description = language === 'ar' ? product.description_ar : product.description_en;
@@ -261,7 +237,7 @@ const ProductModal = ({ product, language, onClose }) => {
                         <img src={`https://placehold.co/600x400/0B0B15/00F0FF?text=${encodeURIComponent(product.name_en)}`} alt={name} className="rounded-lg mb-4 w-full object-cover" />
                         <h3 className="text-xl font-bold text-white mb-2">Key Capabilities</h3>
                         <ul className="space-y-2">
-                            {(language === 'ar' ? product.capabilities_ar : product.capabilities_en).map((cap, i) => (
+                            {(language === 'ar' ? product.capabilities_ar : product.capabilities_en).map((cap: string, i: number) => (
                                 <li key={i} className="flex items-center text-white/80">
                                     <CheckCircle className="w-5 h-5 mr-3 text-cyan-400" />
                                     {cap}
@@ -274,7 +250,7 @@ const ProductModal = ({ product, language, onClose }) => {
                         <p className="text-white/80 mb-6">{description}</p>
                         <h3 className="text-xl font-bold text-white mb-2">Technical Specifications</h3>
                         <div className="grid grid-cols-2 gap-4 text-sm">
-                            {Object.entries(product.specs).map(([key, value]) => (
+                            {Object.entries(product.specs).map(([key, value]: [string, any]) => (
                                 <div key={key} className="bg-slate-800/50 p-3 rounded-lg">
                                     <p className="font-bold text-cyan-400 capitalize">{key.replace('_', ' ')}</p>
                                     <p className="text-white/80">{value}</p>
@@ -295,7 +271,7 @@ export const ShowroomPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [viewMode, setViewMode] = useState('grid');
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
   const categories = useMemo(() => [
     { value: 'all', label: t('showroom.all', language) },
@@ -342,7 +318,7 @@ export const ShowroomPage = () => {
             <div className="relative max-w-5xl mx-auto">
                 <div className="absolute top-8 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent hidden md:block" />
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-                    {['Assessment', 'Deployment', 'Training', 'Optimization'].map((step, i) => (
+                    {['Assessment', 'Deployment', 'Training', 'Optimization'].map((step: string, i: number) => (
                         <div key={i} className="text-center">
                             <div className="w-16 h-16 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-cyan-500 text-cyan-400 text-2xl font-bold backdrop-blur-sm">{i + 1}</div>
                             <h3 className="text-xl font-bold text-white">{language === 'ar' ? `[AR] ${step}`: step}</h3>
@@ -369,7 +345,7 @@ export const ShowroomPage = () => {
             <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
               <div className="relative flex-1 w-full lg:max-w-md">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/50" />
-                <Input type="text" placeholder={t('showroom.searchPlaceholder', language)} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="pl-12 w-full bg-slate-800/60 border-white/10 rounded-lg h-12"/>
+                <Input type="text" placeholder={t('showroom.searchPlaceholder', language)} value={searchTerm} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)} className="pl-12 w-full bg-slate-800/60 border-white/10 rounded-lg h-12"/>
               </div>
               <div className="flex gap-2 flex-wrap justify-center">
                 {categories.map(category => (

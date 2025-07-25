@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/contexts/AuthContext'; // Import useAuth
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -8,26 +8,20 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const { login } = useAuth(); // Use login from AuthContext
 
-    const handleLogin = async (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => { // Added type for e
         e.preventDefault();
         setLoading(true);
         setError(null);
 
         try {
-            const { error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password,
-            });
-
-            if (error) {
-                throw error;
-            }
+            await login(email, password); // Use login function from AuthContext
             
             navigate('/profile');
 
         } catch (error: any) {
-            setError(error.error_description || error.message);
+            setError(error.message);
         } finally {
             setLoading(false);
         }
@@ -39,7 +33,7 @@ const LoginPage = () => {
             <div className="w-full md:w-1/2 h-64 md:h-screen relative overflow-hidden">
                 <video
                     className="absolute top-0 left-0 w-full h-full object-cover"
-                    src="https://placehold.co/1080x1920.mp4?text=Login+Video"
+                    src="/videos/75463f9b-449a-4da1-a81f-492a7f8553af.mp4" // Updated video path
                     autoPlay
                     loop
                     muted

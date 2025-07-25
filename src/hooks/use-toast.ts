@@ -6,6 +6,8 @@ type ToastProps = {
   description?: React.ReactNode
   action?: React.ReactElement
   variant?: 'default' | 'destructive'
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
 }
 
 type Toast = ToastProps & {
@@ -17,7 +19,7 @@ const TOAST_REMOVE_DELAY = 1000000
 
 let count = 0
 
-function genId() {
+function genId(): string {
   count = (count + 1) % Number.MAX_VALUE
   return count.toString()
 }
@@ -33,11 +35,11 @@ type ActionType =
     }
   | {
       type: 'DISMISS_TOAST'
-      toastId?: Toast['id']
+      toastId?: string
     }
   | {
       type: 'REMOVE_TOAST'
-      toastId?: Toast['id']
+      toastId?: string
     }
 
 interface State {
@@ -67,7 +69,7 @@ export const reducer = (state: State, action: ActionType): State => {
     case 'ADD_TOAST':
       return {
         ...state,
-        toasts: [action.toast, ...state.toasts].slice(0, TOAST_LIMIT),
+        toasts: [action.toast as Toast, ...state.toasts].slice(0, TOAST_LIMIT),
       }
 
     case 'UPDATE_TOAST':
@@ -126,9 +128,7 @@ function dispatch(action: ActionType) {
   })
 }
 
-type Toast = Omit<ToastProps, 'id'>
-
-function toast({ ...props }: Toast) {
+function toast({ ...props }: ToastProps) {
   const id = genId()
 
   const update = (props: ToastProps) =>
@@ -144,7 +144,7 @@ function toast({ ...props }: Toast) {
       ...props,
       id,
       open: true,
-      onOpenChange: (open) => {
+      onOpenChange: (open: boolean) => {
         if (!open) dismiss()
       },
     },

@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useCases, UseCase } from '../../data/mockData';
@@ -26,7 +25,7 @@ const UseCasesSection = () => {
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {useCases.map((useCase, index) => (
+          {useCases.map((useCase: UseCase, index: number) => (
             <motion.div
               key={useCase.id}
               initial={{ opacity: 0, y: 30 }}

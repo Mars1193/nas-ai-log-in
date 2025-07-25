@@ -13,7 +13,7 @@ export function useAIChat(aiEmployeeId: number) {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [loading, setLoading] = useState(false)
   const [sessionId] = useState(`session_${Date.now()}_${Math.random()}`)
-  const { user } = useAuth()
+  const { user } = useAuth() // Keep user if it's intended to be used later, otherwise remove
 
   const sendMessage = async (message: string) => {
     if (!message.trim()) return

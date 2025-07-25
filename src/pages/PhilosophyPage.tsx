@@ -1,11 +1,9 @@
-import React from 'react';
-
 const PhilosophyPage = () => {
   return (
     <div className="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       <header className="text-center py-16 md:py-24 bg-white dark:bg-gray-800">
         <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white">أنت المايسترو</h1>
-        <p className="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">عملك هو سيمفونيتك، وموظفونا الرقميون هم الأوركسترا التي بين يديك.</p>
+        <p className="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300">عملك هو سيمفونيتك، وموظفونا الرقميون هم الأوركسترا التي بين يديك.</p>
       </header>
 
       <main className="py-16 px-4 sm:px-6 lg:px-8">

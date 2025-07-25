@@ -14,7 +14,7 @@ export function useDemoRequest() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const { user } = useAuth()
+  const { user } = useAuth() // Keep user if it's intended to be used later, otherwise remove
 
   const requestDemo = async (requestData: DemoRequestData) => {
     setLoading(true)

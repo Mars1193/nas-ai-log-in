@@ -1,6 +1,6 @@
 // File: src/contexts/AuthContext.tsx
 
-import React, { createContext, useState, useEffect, useContext, ReactNode } from 'react';
+import { createContext, useState, useEffect, useContext, ReactNode } from 'react';
 import { supabase } from '@/lib/supabase'; // Make sure this path is correct for your project
 import type { Session, User } from '@supabase/supabase-js';
 
@@ -10,6 +10,8 @@ interface AuthContextType {
     user: User | null;
     loading: boolean;
     signOut: () => Promise<void>;
+    login: (email: string, password: string) => Promise<any>;
+    signup: (email: string, password: string, options?: { data?: object }) => Promise<any>;
 }
 
 // 2. Create the context with a default value
@@ -51,11 +53,27 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         await supabase.auth.signOut();
     };
 
+    // Function to log in the user
+    const login = async (email: string, password: string) => {
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        return data;
+    };
+
+    // Function to sign up the user
+    const signup = async (email: string, password: string, options?: { data?: object }) => {
+        const { data, error } = await supabase.auth.signUp({ email, password, options });
+        if (error) throw error;
+        return data;
+    };
+
     const value = {
         session,
         user,
         loading,
         signOut,
+        login,
+        signup,
     };
 
     // Render children only after the initial loading is complete

@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './NasAiResearchesPage.module.css';
 
 // You can easily edit your research papers here
