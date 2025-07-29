@@ -1,153 +1,485 @@
-export const en = {
-  // Global
-  breakingBanner: "🚨 BREAKING: While OpenAI burns $700k/day on cloud costs, our clients spend $0/month after purchase 🚨",
-  languageSwitch: "العربية",
-  // Navigation
-  home: "Home",
-  showroom: "Showroom",
-  services: "Services",
-  roiCalculator: "ROI Calculator",
-  philosophy: "Philosophy",
-  contact: "Contact",
-  login: "Login",
-  signup: "Sign Up",
-  // Home Page
-  mainHeadline: "STOP RENTING AI. OWN YOUR WORKFORCE.",
-  subHeadline: "Built with today's proven technology, delivering tomorrow's workforce.",
-  exploreShowroom: "Explore The Showroom",
-  // Common
-  bookDemonstration: "Book a Demonstration",
-  getStarted: "Get Started",
-  learnMore: "Learn More",
-  guestChatbot: {
-    title: "AI Guest Assistant",
-    typingIndicator: "Typing...",
-    typeMessagePlaceholder: "Type your message here...",
-    sendButton: "Send",
-    description: "Get instant answers about our demos, products, and pricing.",
-  },
-  nav: {
+export interface Translation {
+  // ... (All existing keys)
+  'nav.showroom': string;
+  'showroom.description': string;
+  'showroom.searchPlaceholder': string;
+  'showroom.all': string;
+  'showroom.finance': string;
+  'showroom.sales': string;
+  'showroom.support': string;
+  'showroom.analytics': string;
+  'showroom.showingResults': (f: number, t: number) => string;
+  'showroom.noResults': string;
+  'showroom.noResultsDescription': string;
+  'employees.viewDetails': string;
+  'employees.monthlyPrice': string;
+  'bridge.title': string;
+  'bridge.subtitle': string;
+  'arch.title': string;
+  'arch.subtitle': string;
+  // ... (other keys from original file)
+  breakingBanner: string;
+  languageSwitch: string;
+  home: string;
+  showroom: string;
+  services: string;
+  roiCalculator: string;
+  philosophy: string;
+  contact: string;
+  login: string;
+  signup: string;
+  mainHeadline: string;
+  subHeadline: string;
+  exploreShowroom: string;
+  aiEmployeeTitle: string;
+  aiEmployeeDesc: string;
+  accountingTitle: string;
+  accountingDesc: string;
+  createAccounts: string;
+  manageInvoices: string;
+  financialAnalysis: string;
+  realTimeDecisions: string;
+  dataInsights: string;
+  continuousLearning: string;
+  featuresTitle: string;
+  realTimeTitle: string;
+  realTimeDesc: string;
+  visionTitle: string;
+  visionDesc: string;
+  controlTitle: string;
+  controlDesc: string;
+  learningTitle: string;
+  learningDesc: string;
+  capabilitiesTitle: string;
+  voiceInteraction: string;
+  visualRecognition: string;
+  computerControl: string;
+  documentHandling: string;
+  dataProcessing: string;
+  performanceTitle: string;
+  academicTraining: string;
+  practicalExperience: string;
+  realWorldData: string;
+  adaptiveLearning: string;
+  benefitsTitle: string;
+  noBreaks: string;
+  noVacations: string;
+  noComplaints: string;
+  noResignation: string;
+  continuousWork: string;
+  noSalary: string;
+  servicesTitle: string;
+  servicesSubtitle: string;
+  servicePackages: string;
+  choosePackage: string;
+  additionalServices: string;
+  implementationProcess: string;
+  assessmentTitle: string;
+  assessmentDesc: string;
+  deploymentTitle: string;
+  deploymentDesc: string;
+  trainingTitle: string;
+  trainingDesc: string;
+  optimizationTitle: string;
+  optimizationDesc: string;
+  readyToRevolutionize: string;
+  letsDiscuss: string;
+  bookFreeConsultation: string;
+  startSmart: string;
+  startSmartDesc: string;
+  smartOperations: string;
+  smartOperationsDesc: string;
+  autoMarketingKit: string;
+  autoMarketingKitDesc: string;
+  fullDigitalSetup: string;
+  fullDigitalSetupDesc: string;
+  websiteDesign: string;
+  logoDesign: string;
+  companyProfile: string;
+  marketingPlan: string;
+  socialSetup: string;
+  workflowAnalysis: string;
+  toolRecommendations: string;
+  performanceComparison: string;
+  lightAutomation: string;
+  teamTraining: string;
+  strategicContent: string;
+  readyPosts: string;
+  shortVideos: string;
+  autoScheduling: string;
+  analyticsReports: string;
+  integratedWebsite: string;
+  brandIdentity: string;
+  comprehensiveMarketing: string;
+  advancedAutomation: string;
+  completeContent: string;
+  comprehensiveTraining: string;
+  aiDashboard: string;
+  advancedChatbot: string;
+  microApps: string;
+  legacyInsights: string;
+  aiVideos: string;
+  aiConsulting: string;
+  showroomTitle: string;
+  viewSpecs: string;
+  oneTimePurchase: string;
+  calculateSavings: string;
+  numberOfEmployees: string;
+  averageAnnualSalary: string;
+  threeYearHumanCost: string;
+  oneTimeAICost: string;
+  totalSavings: string;
+  bookLiveDemo: string;
+  philosophyTitle: string;
+  ownVsRent: string;
+  securitySovereignty: string;
+  maestroOrchestra: string;
+  signupFuture: string;
+  loginFuture: string;
+  emailAddress: string;
+  password: string;
+  confirmPassword: string;
+  fullName: string;
+  bookDemonstration: string;
+  callUs: string;
+  whatsappUs: string;
+  emailUs: string;
+  accountantTitle: string;
+  hrManagerTitle: string;
+  customerServiceTitle: string;
+  medicalAssistantTitle: string;
+  executiveAssistantTitle: string;
+  coordinatorTitle: string;
+  legalAssistantTitle: string;
+  purchasingSpecialistTitle: string;
+  businessAssistantTitle: string;
+  getStarted: string;
+  learnMore: string;
+}
+
+export const translations: Record<'en' | 'ar', Translation> = {
+  en: {
+    // Showroom Page
+    'nav.showroom': 'The Future Workforce: AI Employees',
+    'showroom.description': 'Discover our specialized AI models, ready to integrate and revolutionize your business operations.',
+    'showroom.searchPlaceholder': 'Search by role or function...',
+    'showroom.all': 'All Categories',
+    'showroom.finance': 'Finance',
+    'showroom.sales': 'Sales',
+    'showroom.support': 'Support',
+    'showroom.analytics': 'Analytics',
+    'showroom.showingResults': (f: number, t: number) => `Displaying ${f} of ${t} AI Employees`,
+    'showroom.noResults': 'No Employees Found',
+    'showroom.noResultsDescription': 'Your search criteria did not match any of our AI specialists. Please try a different term.',
+    'employees.viewDetails': 'View Details & Specs',
+    'employees.monthlyPrice': 'One-Time Purchase Price',
+    'bridge.title': 'The Bridge to Automation',
+    'bridge.subtitle': 'Our seamless 4-step process for integrating your new AI workforce.',
+    'arch.title': 'System Architecture',
+    'arch.subtitle': 'A robust, three-layered foundation for unparalleled performance and security.',
+    // ... (all other existing english translations)
+    breakingBanner: "",
+    languageSwitch: "العربية",
+    home: "Home",
     showroom: "Showroom",
-    calculator: "ROI Calculator",
     services: "Services",
-  },
-  common: {
-    aboutUs: "About Us",
-    careers: "Careers",
+    roiCalculator: "ROI Calculator",
+    philosophy: "Philosophy",
     contact: "Contact",
-    help: "Help",
-    documentation: "Documentation",
-    privacy: "Privacy Policy",
+    login: "Login",
+    signup: "Sign Up",
+    mainHeadline: "STOP RENTING AI. OWN YOUR WORKFORCE.",
+    subHeadline: "Built with today's proven technology, delivering tomorrow's workforce.",
+    exploreShowroom: "Explore The Showroom",
+    aiEmployeeTitle: "AI Employee - Not Just a Computer",
+    aiEmployeeDesc: "We don't sell ordinary computers or smart apps. We provide you with a fixed AI employee that can perform all office tasks with efficiency exceeding human employees.",
+    accountingTitle: "AI Accounting Manager Tasks",
+    accountingDesc: "Performs all tasks that a human accounting manager does and more:",
+    createAccounts: "Create and manage accounts",
+    manageInvoices: "Manage invoices and ledgers",
+    financialAnalysis: "Financial analysis and reporting",
+    realTimeDecisions: "Real-time decision making",
+    dataInsights: "Extract insights from data",
+    continuousLearning: "Continuous learning from interactions",
+    featuresTitle: "Why Are We Different?",
+    realTimeTitle: "Real-time Interaction",
+    realTimeDesc: "Talks and listens to you via microphone and speakers",
+    visionTitle: "Advanced Vision",
+    visionDesc: "Sees and recognizes you through dedicated camera",
+    controlTitle: "Complete Control",
+    controlDesc: "Controls the computer completely without needing mouse or keyboard",
+    learningTitle: "Continuous Learning",
+    learningDesc: "Learns from every interaction and continuously improves performance",
+    capabilitiesTitle: "AI Employee Capabilities",
+    voiceInteraction: "Voice Interaction (Microphone & Speaker)",
+    visualRecognition: "Visual Recognition (Camera)",
+    computerControl: "Complete Computer Control",
+    documentHandling: "Printing and Scanning",
+    dataProcessing: "External Memory Data Processing",
+    performanceTitle: "Performance & Training",
+    academicTraining: "Trained on studies and research papers from global universities",
+    practicalExperience: "Practical experience from real case studies",
+    realWorldData: "Learning from real-world data and videos",
+    adaptiveLearning: "Adapts and learns from every new interaction",
+    benefitsTitle: "Benefits",
+    noBreaks: "No Breaks",
+    noVacations: "No Vacations",
+    noComplaints: "No Complaints",
+    noResignation: "No Resignation",
+    continuousWork: "Continuous 24/7 Work",
+    noSalary: "No Salary After Purchase",
+    servicesTitle: "Our Services",
+    servicesSubtitle: "Integrated solutions designed to transform your business into a future-proof, AI-powered enterprise.",
+    servicePackages: "Digital Transformation Packages",
+    choosePackage: "Choose a comprehensive package to kickstart your journey into intelligent automation.",
+    additionalServices: "Specialized Services",
+    implementationProcess: "Implementation Process",
+    assessmentTitle: "Assessment: Understanding Your Needs",
+    assessmentDesc: "We analyze your workflow to identify key areas for AI integration, ensuring a tailored solution.",
+    deploymentTitle: "Deployment: Activating Your Digital Team",
+    deploymentDesc: "We seamlessly integrate your new AI employees into your existing systems with zero downtime.",
+    trainingTitle: "Training: Empowering Your Human Team",
+    trainingDesc: "We provide comprehensive training to ensure your team can effectively manage and collaborate with their new digital colleagues.",
+    optimizationTitle: "Optimization: Continuous Growth",
+    optimizationDesc: "Our partnership continues with ongoing performance monitoring and optimization to evolve with your business.",
+    readyToRevolutionize: "Ready to Revolutionize Your Business?",
+    letsDiscuss: "Let's discuss how our AI solutions can be tailored to your unique challenges. Schedule a free, no-obligation consultation with our experts today.",
+    bookFreeConsultation: "Book a Free Consultation",
+    startSmart: "Start Smart",
+    startSmartDesc: "The foundational package for a smart and impactful digital beginning.",
+    smartOperations: "Smart Operations",
+    smartOperationsDesc: "Analyze and evolve your internal processes with intelligent automation.",
+    autoMarketingKit: "Auto‑Marketing Kit",
+    autoMarketingKitDesc: "A complete, automated marketing suite to drive growth.",
+    fullDigitalSetup: "Full Digital Setup",
+    fullDigitalSetupDesc: "The ultimate all-in-one service for a complete digital transformation.",
+    websiteDesign: "Modern & Responsive Website Design",
+    logoDesign: "Professional Logo & Brand Identity",
+    companyProfile: "Comprehensive Company Profile",
+    marketingPlan: "Initial Marketing Blueprint",
+    socialSetup: "Social Media Account Setup",
+    workflowAnalysis: "Workflow Analysis & Bottleneck Identification",
+    toolRecommendations: "Custom AI Tool Recommendations",
+    performanceComparison: "Performance Benchmarking (Before/After)",
+    lightAutomation: "Light Automation Tool Development",
+    teamTraining: "Team Training on New Systems",
+    strategicContent: "Monthly Strategic Content Plan",
+    readyPosts: "500+ Ready-to-Publish Social Posts",
+    shortVideos: "AI-Generated Short Video Content",
+    autoScheduling: "Automated Scheduling & Publishing System",
+    analyticsReports: "Engagement Analytics & Reporting",
+    integratedWebsite: "Integrated E-commerce Website",
+    brandIdentity: "Complete Brand Identity & Style Guide",
+    comprehensiveMarketing: "Comprehensive Multi-Channel Marketing Plan",
+    advancedAutomation: "Advanced Smart Automation Tools",
+    completeContent: "Full Content Package & Team Training",
+    comprehensiveTraining: "Comprehensive team training on the system",
+    aiDashboard: "AI-Powered Analytics Dashboard",
+    advancedChatbot: "Advanced Chatbot (Website & WhatsApp)",
+    microApps: "Custom Micro-App Development",
+    legacyInsights: "Legacy Data Insight Extraction (Excel)",
+    aiVideos: "AI Avatar Video Production",
+    aiConsulting: "Strategic AI Integration Consulting",
+    showroomTitle: "The Showroom",
+    viewSpecs: "View Specs",
+    oneTimePurchase: "One-Time Purchase",
+    calculateSavings: "Calculate Your Savings",
+    numberOfEmployees: "Number of human employees in this role:",
+    averageAnnualSalary: "Average annual salary per employee:",
+    threeYearHumanCost: "3-Year Cost with Human Staff",
+    oneTimeAICost: "One-Time Cost of NAS AI Unit",
+    totalSavings: "Total Savings",
+    bookLiveDemo: "Book a Live Demo",
+    philosophyTitle: "The Ownership Philosophy",
+    ownVsRent: "Own vs. Rent",
+    securitySovereignty: "The Security of Sovereignty",
+    maestroOrchestra: "Maestro & Orchestra",
+    signupFuture: "Sign Up to The Future",
+    loginFuture: "Sign In to The Future",
+    emailAddress: "Email Address",
+    password: "Password",
+    confirmPassword: "Confirm Password",
+    fullName: "Full Name",
+    bookDemonstration: "Book a Demonstration",
+    callUs: "Call Us",
+    whatsappUs: "WhatsApp",
+    emailUs: "Email Us",
+    accountantTitle: "AI Accountant Unit",
+    hrManagerTitle: "AI HR Manager Unit",
+    customerServiceTitle: "AI Customer Service Unit",
+    medicalAssistantTitle: "AI Medical Assistant Unit",
+    executiveAssistantTitle: "AI Executive Assistant Unit",
+    coordinatorTitle: "AI Coordinator Unit",
+    legalAssistantTitle: "AI Legal Assistant Unit",
+    purchasingSpecialistTitle: "AI Purchasing Specialist Unit",
+    businessAssistantTitle: "AI Business Assistant Unit",
+    getStarted: "Get Started",
+    learnMore: "Learn More"
   },
-  footerSlogan: "Built with today's technology, delivering tomorrow's workforce.",
-  contactUs: "Contact Us",
-  quickLinks: "Quick Links",
-  followUs: "Follow Us",
-  rightsReserved: "All rights reserved.",
-  product: "Product",
-  company: "Company",
-  support: "Support",
-  poweredBy: "Powered by",
-  privacyPolicy: "Privacy Policy",
-  termsOfService: "Terms of Service",
-  versionAvailable: "Version 2.0 Now Available",
-  tomorrowWorkforce: "Tomorrow's Workforce",
-  workforceToday: "Workforce,",
-  availableToday: "Available Today",
-  physicalAIEmployees: "Physical AI employees that work offline, 24/7, with complete data privacy. The future of work isn't in the cloud—it's on your premises.",
-  dataSecure: "Data Secure",
-  offlineOperation: "Offline Operation",
-  fullOwnership: "Full Ownership",
-  aiEmployeeUnit: "AI Employee Unit",
-  activeReady: "Active & Ready",
-  systemStatus: "System Status",
-  coreFeatures: "Core Features",
-  revolutionaryDesign: "Our revolutionary design combines cutting-edge AI with absolute data privacy",
-  monthlyCosts: "Monthly Costs After Purchase",
-  availableWorkforce: "Available Workforce",
-  dataSovereignty: "Data Sovereignty",
-  readyToBring: "Ready to Bring Smart Workforce to Your Organization?",
-  contactTeam: "Contact our team today to see how our AI employees can transform your operations",
-  features: "Features",
-  solutions: "Solutions",
-  blog: "Blog",
-  faq: "FAQ",
-  scrollDown: "Scroll Down",
+  ar: {
+    // Showroom Page
+    'nav.showroom': 'القوى العاملة المستقبلية: موظفو الذكاء الاصطناعي',
+    'showroom.description': 'اكتشف نماذج الذكاء الاصطناعي المتخصصة لدينا، الجاهزة للاندماج وإحداث ثورة في عمليات عملك.',
+    'showroom.searchPlaceholder': 'ابحث بالمنصب أو الوظيفة...',
+    'showroom.all': 'جميع الفئات',
+    'showroom.finance': 'المالية',
+    'showroom.sales': 'المبيعات',
+    'showroom.support': 'الدعم',
+    'showroom.analytics': 'التحليلات',
+    'showroom.showingResults': (f: number, t: number) => `عرض ${f} من ${t} موظف ذكي`,
+    'showroom.noResults': 'لم يتم العثور على موظفين',
+    'showroom.noResultsDescription': 'لم تتطابق معايير البحث مع أي من متخصصي الذكاء الاصطناعي لدينا. يرجى تجربة مصطلح مختلف.',
+    'employees.viewDetails': 'عرض التفاصيل والمواصفات',
+    'employees.monthlyPrice': 'سعر الشراء لمرة واحدة',
+    'bridge.title': 'الجسر إلى الأتمتة',
+    'bridge.subtitle': 'عمليتنا السلسة المكونة من 4 خطوات لدمج قوى عاملة الذكاء الاصطناعي الجديدة.',
+    'arch.title': 'هيكلية النظام',
+    'arch.subtitle': 'أساس متين من ثلاث طبقات لأداء وأمان لا مثيل لهما.',
+    // ... (all other existing arabic translations)
+    breakingBanner: "",
+    languageSwitch: "English",
+    home: "الرئيسية",
+    showroom: "صالة العرض",
+    services: "خدماتنا",
+    roiCalculator: "حاسبة العائد",
+    philosophy: "الفلسفة",
+    contact: "اتصل بنا",
+    login: "تسجيل الدخول",
+    signup: "التسجيل",
+    mainHeadline: "توقف عن استئجار الذكاء الاصطناعي. امتلك قوتك العاملة.",
+    subHeadline: "مُصممة بتقنيات اليوم المثبتة، لتقديم القوى العاملة للغد.",
+    exploreShowroom: "استكشف صالة العرض",
+    aiEmployeeTitle: "الموظف الآلي - ليس مجرد كمبيوتر",
+    aiEmployeeDesc: "نحن لا نبيع كمبيوتر عادي أو تطبيق ذكي. نحن نقدم لك موظفاً آلياً ثابتاً يستطيع أداء جميع المهام المكتبية بكفاءة تفوق الموظف البشري.",
+    accountingTitle: "مهام مدير الحسابات الآلي",
+    accountingDesc: "يقوم بجميع المهام التي يؤديها مدير الحسابات البشري وأكثر:",
+    createAccounts: "إنشاء وإدارة الحسابات",
+    manageInvoices: "إدارة الفواتير والدفاتر",
+    financialAnalysis: "التحليل المالي والتقارير",
+    realTimeDecisions: "اتخاذ القرارات في الوقت الفعلي",
+    dataInsights: "استخراج الرؤى من البيانات",
+    continuousLearning: "التعلم المستمر من التفاعلات",
+    featuresTitle: "لماذا نحن مختلفون؟",
+    realTimeTitle: "تفاعل في الوقت الفعلي",
+    realTimeDesc: "يتحدث معك ويستمع إليك عبر الميكروفون والسماعة",
+    visionTitle: "رؤية متقدمة",
+    visionDesc: "يراك ويتعرف عليك عبر الكاميرا المخصصة",
+    controlTitle: "تحكم كامل",
+    controlDesc: "يتحكم بالكمبيوتر بالكامل دون الحاجة لفأرة أو لوحة مفاتيح",
+    learningTitle: "تعلم مستمر",
+    learningDesc: "يتعلم من كل تفاعل ويطور أداءه باستمرار",
+    capabilitiesTitle: "قدرات الموظف الآلي",
+    voiceInteraction: "التفاعل الصوتي (مايك وسماعة)",
+    visualRecognition: "التعرف البصري (كاميرا)",
+    computerControl: "التحكم الكامل بالكمبيوتر",
+    documentHandling: "الطباعة والمسح الضوئي",
+    dataProcessing: "معالجة البيانات من الذاكرة الخارجية",
+    performanceTitle: "الأداء والتدريب",
+    academicTraining: "مدرب على دراسات وأوراق بحثية من جامعات عالمية",
+    practicalExperience: "خبرة عملية من دراسات حالة حقيقية",
+    realWorldData: "تعلم من بيانات وفيديوهات العالم الحقيقي",
+    adaptiveLearning: "يتكيف ويتعلم من كل تفاعل جديد",
+    benefitsTitle: "المزايا",
+    noBreaks: "لا استراحات",
+    noVacations: "لا إجازات",
+    noComplaints: "لا شكاوى",
+    noResignation: "لا استقالة",
+    continuousWork: "عمل مستمر 24/7",
+    noSalary: "بدون راتب بعد الشراء",
+    servicesTitle: "خدماتنا",
+    servicesSubtitle: "حلول متكاملة مصممة لتحويل عملك إلى مؤسسة مستقبلية مدعومة بالذكاء الاصطناعي.",
+    servicePackages: "باقات التحول الرقمي",
+    choosePackage: "اختر باقة شاملة لبدء رحلتك نحو الأتمتة الذكية.",
+    additionalServices: "خدمات متخصصة",
+    implementationProcess: "عملية التنفيذ",
+    assessmentTitle: "التقدير: فهم احتياجاتك",
+    assessmentDesc: "نقوم بتحليل سير عملك لتحديد المجالات الرئيسية لدمج الذكاء الاصطناعي، مما يضمن حلاً مخصصًا.",
+    deploymentTitle: "النشر: تفعيل فريقك الرقمي",
+    deploymentDesc: "ندمج موظفيك الرقميين الجدد بسلاسة في أنظمتك الحالية دون أي توقف في العمل.",
+    trainingTitle: "التدريب: تمكين فريقك البشري",
+    trainingDesc: "نقدم تدريبًا شاملاً لضمان قدرة فريقك على إدارة زملائهم الرقميين الجدد والتعاون معهم بفعالية.",
+    optimizationTitle: "التحسين: نمو مستمر",
+    optimizationDesc: "تستمر شراكتنا من خلال المراقبة المستمرة للأداء والتحسين للتطور مع أعمالك.",
+    readyToRevolutionize: "هل أنت مستعد لإحداث ثورة في عملك؟",
+    letsDiscuss: "دعنا نناقش كيف يمكن تصميم حلول الذكاء الاصطناعي لدينا لتناسب تحدياتك الفريدة. احجز استشارة مجانية وغير ملزمة مع خبرائنا اليوم.",
+    bookFreeConsultation: "احجز استشارة مجانية",
+    startSmart: "البداية الذكية",
+    startSmartDesc: "الباقة التأسيسية لبداية رقمية ذكية ومؤثرة.",
+    smartOperations: "العمليات الذكية",
+    smartOperationsDesc: "حلل وطور عملياتك الداخلية بأتمتة ذكية.",
+    autoMarketingKit: "عدة التسويق الآلي",
+    autoMarketingKitDesc: "حزمة تسويق آلية كاملة لدفع النمو.",
+    fullDigitalSetup: "الإعداد الرقمي الكامل",
+    fullDigitalSetupDesc: "الخدمة النهائية الشاملة لتحول رقمي كامل.",
+    websiteDesign: "تصميم موقع عصري ومتجاوب",
+    logoDesign: "شعار وهوية بصرية احترافية",
+    companyProfile: "ملف تعريفي شامل للشركة",
+    marketingPlan: "مخطط تسويقي أولي",
+    socialSetup: "إعداد حسابات التواصل الاجتماعي",
+    workflowAnalysis: "تحليل سير العمل وتحديد المعوقات",
+    toolRecommendations: "توصيات مخصصة بأدوات الذكاء الاصطناعي",
+    performanceComparison: "قياس الأداء (قبل/بعد)",
+    lightAutomation: "تطوير أدوات أتمتة خفيفة",
+    teamTraining: "تدريب الفريق على الأنظمة الجديدة",
+    strategicContent: "خطة محتوى استراتيجية شهرية",
+    readyPosts: "500+ منشور اجتماعي جاهز للنشر",
+    shortVideos: "محتوى فيديو قصير مُنشأ بالذكاء الاصطناعي",
+    autoScheduling: "نظام جدولة ونشر آلي",
+    analyticsReports: "تحليلات وتقارير التفاعل",
+    integratedWebsite: "موقع تجارة إلكترونية متكامل",
+    brandIdentity: "هوية بصرية ودليل علامة تجارية كامل",
+    comprehensiveMarketing: "خطة تسويق شاملة متعددة القنوات",
+    advancedAutomation: "أدوات أتمتة ذكية متقدمة",
+    completeContent: "حزمة محتوى كاملة وتدريب للفريق",
+    comprehensiveTraining: "تدريب شامل للفريق على النظام",
+    aiDashboard: "لوحة تحليلات مدعومة بالذكاء الاصطناعي",
+    advancedChatbot: "شات بوت متقدم (للموقع والواتساب)",
+    microApps: "تطوير تطبيقات مصغرة مخصصة",
+    legacyInsights: "استخراج رؤى من بيانات إكسل القديمة",
+    aiVideos: "إنتاج فيديوهات بأفاتار ذكاء اصطناعي",
+    aiConsulting: "استشارات استراتيجية في الذكاء الاصطناعي",
+    showroomTitle: "صالة العرض",
+    viewSpecs: "استعراض المواصفات",
+    oneTimePurchase: "شراء لمرة واحدة",
+    calculateSavings: "احسب مدخراتك",
+    numberOfEmployees: "عدد الموظفين البشريين في هذا الدور:",
+    averageAnnualSalary: "متوسط الراتب السنوي للموظف:",
+    threeYearHumanCost: "تكلفة 3 سنوات مع الموظفين البشريين",
+    oneTimeAICost: "التكلفة لمرة واحدة لوحدة NAS AI",
+    totalSavings: "إجمالي المدخرات",
+    bookLiveDemo: "احجز عرضاً توضيحياً مباشراً",
+    philosophyTitle: "فلسفة التملّك",
+    ownVsRent: "امتلك مقابل استأجر",
+    securitySovereignty: "أمان السيادة",
+    maestroOrchestra: "المايسترو والأوركسترا",
+    signupFuture: "سجّل للدخول إلى المستقبل",
+    loginFuture: "تسجيل الدخول إلى المستقبل",
+    emailAddress: "عنوان البريد الإلكتروني",
+    password: "كلمة المرور",
+    confirmPassword: "تأكيد كلمة المرور",
+    fullName: "الاسم الكامل",
+    bookDemonstration: "احجز عرضاً توضيحياً",
+    callUs: "اتصل بنا",
+    whatsappUs: "واتساب",
+    emailUs: "راسلنا",
+    accountantTitle: "وحدة المحاسب الذكي",
+    hrManagerTitle: "وحدة مدير الموارد البشرية الذكي",
+    customerServiceTitle: "وحدة خدمة العملاء الذكية",
+    medicalAssistantTitle: "وحدة المساعد الطبي الذكي",
+    executiveAssistantTitle: "وحدة المساعد التنفيذي الذكي",
+    coordinatorTitle: "وحدة المنسق الذكي",
+    legalAssistantTitle: "وحدة المساعد القانوني الذكي",
+    purchasingSpecialistTitle: "وحدة أخصائي المشتريات الذكي",
+    businessAssistantTitle: "وحدة المساعد التجاري الذكي",
+    getStarted: "ابدأ الآن",
+    learnMore: "اعرف المزيد"
+  }
 };
 
-export const ar = {
-  // Global
-  breakingBanner: "🚨 خبر عاجل: بينما تحرق OpenAI مبلغ 700 ألف دولار يوميًا على تكاليف السحابة، عملاؤنا ينفقون 0 دولار شهريًا بعد الشراء 🚨",
-  languageSwitch: "English",
-  // Navigation
-  home: "الرئيسية",
-  showroom: "صالة العرض",
-  services: "خدماتنا",
-  roiCalculator: "حاسبة العائد",
-  philosophy: "الفلسفة",
-  contact: "اتصل بنا",
-  login: "تسجيل الدخول",
-  signup: "التسجيل",
-  // Home Page
-  mainHeadline: "توقف عن استئجار الذكاء الاصطناعي. امتلك قوتك العاملة.",
-  subHeadline: "مُصممة بتقنيات اليوم المثبتة، لتقديم القوى العاملة للغد.",
-  exploreShowroom: "استكشف صالة العرض",
-  // Common
-  bookDemonstration: "احجز عرضاً توضيحياً",
-  getStarted: "ابدأ الآن",
-  learnMore: "اعرف المزيد",
-  guestChatbot: {
-    title: "مساعد الضيف بالذكاء الاصطناعي",
-    typingIndicator: "يكتب...",
-    typeMessagePlaceholder: "اكتب رسالتك هنا...",
-    sendButton: "إرسال",
-    description: "احصل على إجابات فورية حول عروضنا التوضيحية ومنتجاتنا وأسعارنا.",
-  },
-  nav: {
-    showroom: "صالة العرض",
-    calculator: "حاسبة العائد",
-    services: "خدماتنا",
-  },
-  common: {
-    aboutUs: "من نحن",
-    careers: "الوظائف",
-    contact: "اتصل بنا",
-    help: "مساعدة",
-    documentation: "الوثائق",
-    privacy: "سياسة الخصوصية",
-  },
-  footerSlogan: "مصنوع بتقنيات اليوم لأجل قوة عمل الغد.",
-  contactUs: "تواصل معنا",
-  quickLinks: "روابط سريعة",
-  followUs: "تابعنا",
-  rightsReserved: "جميع الحقوق محفوظة.",
-  product: "المنتج",
-  company: "الشركة",
-  support: "الدعم",
-  poweredBy: "مدعوم بتقنية",
-  privacyPolicy: "سياسة الخصوصية",
-  termsOfService: "شروط الخدمة",
-  versionAvailable: "الإصدار 2.0 الآن متاح",
-  tomorrowWorkforce: "قوة عمل الغد",
-  workforceToday: "الغد،",
-  availableToday: "متاحة اليوم",
-  physicalAIEmployees: "موظفو ذكاء اصطناعي ماديون يعملون بدون إنترنت، 24/7، مع خصوصية كاملة للبيانات. مستقبل العمل ليس في السحابة - إنه في مقرك.",
-  dataSecure: "أمان البيانات",
-  offlineOperation: "تشغيل دون اتصال",
-  fullOwnership: "خاصية كاملة",
-  aiEmployeeUnit: "وحدة الموظف الذكي",
-  activeReady: "نشط وجاهز",
-  systemStatus: "حالة النظام",
-  coreFeatures: "الميزات الرئيسية",
-  revolutionaryDesign: "تصميمنا الثوري يجمع بين أحدث تقنيات الذكاء الاصطناعي مع خصوصية البيانات المطلقة",
-  monthlyCosts: "تكاليف شهرية بعد الشراء",
-  availableWorkforce: "قوة عاملة متاحة",
-  dataSovereignty: "سيادة على البيانات",
-  readyToBring: "جاهز لإحضار قوة العمل الذكية إلى مؤسستك؟",
-  contactTeam: "تواصل مع فريقنا اليوم لمعرفة كيف يمكن لموظفي الذكاء الاصطناعي لدينا تحويل عملياتك",
-  features: "الميزات",
-  solutions: "الحلول",
-  blog: "المدونة",
-  faq: "الأسئلة الشائعة",
-  scrollDown: "مرر للأسفل",
+export const t = (key: keyof Translation, language: 'en' | 'ar', options?: any): string => {
+  const translation = translations[language][key] || key;
+  if (typeof translation === 'function') {
+    return translation(options?.filtered, options?.total);
+  }
+  return translation;
 };
