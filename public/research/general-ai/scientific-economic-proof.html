@@ -1,0 +1,1484 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Scientific and Economic Rationale for the On-Device NAS AI Employee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #0ea5e9;
+            --muted: #64748b;
+            --surface: #f8fafc;
+            --border: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--primary);
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .serif {
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.95) 0%, 
+                rgba(30, 41, 59, 0.9) 50%, 
+                rgba(14, 165, 233, 0.8) 100%);
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(248, 250, 252, 0.98);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid var(--border);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+        
+        .citation-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted var(--accent);
+            transition: all 0.2s ease;
+        }
+        
+        .citation-link:hover {
+            background: rgba(14, 165, 233, 0.1);
+            padding: 0 4px;
+            border-radius: 3px;
+        }
+        
+        .benchmark-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .benchmark-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .performance-badge {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            display: inline-block;
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 3rem 0;
+        }
+        
+        /* Mermaid diagram styles */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Responsive controls for mermaid */
+        @media (max-width: 1024px) {
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .toc-fixed {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .toc-fixed.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .mermaid-container {
+                padding: 15px;
+            }
+        }
+    </style>
+  </head>
+
+  <body>
+    <!-- Mobile Menu Toggle -->
+    <button id="mobile-menu-toggle" class="fixed top-4 left-4 z-50 lg:hidden bg-white p-2 rounded-lg shadow-lg">
+      <i class="fas fa-bars text-gray-800"></i>
+    </button>
+
+    <!-- Table of Contents -->
+    <nav class="toc-fixed" id="toc">
+      <div class="mb-8">
+        <h3 class="text-lg font-bold text-gray-900 mb-4">Navigation</h3>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href="#hero" class="block text-gray-700 hover:text-blue-600 transition-colors">Executive Summary</a>
+          </li>
+          <li>
+            <a href="#performance-benchmark" class="block text-gray-700 hover:text-blue-600 transition-colors">1. Performance Benchmark</a>
+          </li>
+          <li class="ml-4">
+            <a href="#llm-performance" class="block text-gray-600 hover:text-blue-600 transition-colors">1.1 LLM Performance</a>
+          </li>
+          <li class="ml-4">
+            <a href="#concurrent-execution" class="block text-gray-600 hover:text-blue-600 transition-colors">1.2 Concurrent Execution</a>
+          </li>
+          <li class="ml-4">
+            <a href="#hardware-specs" class="block text-gray-600 hover:text-blue-600 transition-colors">1.3 Hardware Specs</a>
+          </li>
+          <li>
+            <a href="#gui-automation" class="block text-gray-700 hover:text-blue-600 transition-colors">2. GUI Automation Reliability</a>
+          </li>
+          <li>
+            <a href="#economic-value" class="block text-gray-700 hover:text-blue-600 transition-colors">3. Economic Value</a>
+          </li>
+          <li>
+            <a href="#trust-security" class="block text-gray-700 hover:text-blue-600 transition-colors">4. Trust & Security</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section id="hero" class="relative min-h-screen flex items-center">
+        <div class="absolute inset-0 hero-gradient"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Title & Subtitle -->
+            <div class="lg:col-span-7 space-y-6">
+              <div class="space-y-4">
+                <div class="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium">
+                  Scientific Whitepaper
+                </div>
+                <h1 class="serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                  The Scientific and Economic
+                  <em class="text-blue-300">Rationale</em> for the On-Device NAS AI Employee
+                </h1>
+                <p class="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl">
+                  A comprehensive analysis of performance benchmarks, economic viability, and security advantages
+                  of local AI deployment for professional applications.
+                </p>
+              </div>
+            </div>
+
+            <!-- Key Metrics Grid -->
+            <div class="lg:col-span-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/20">
+                  <div class="text-2xl sm:text-3xl font-bold text-white">150+</div>
+                  <div class="text-white/80 text-xs sm:text-sm">Tokens/Second (RTX 4090)</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/20">
+                  <div class="text-2xl sm:text-3xl font-bold text-white">24GB</div>
+                  <div class="text-white/80 text-xs sm:text-sm">VRAM Recommended</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/20">
+                  <div class="text-2xl sm:text-3xl font-bold text-white">64GB</div>
+                  <div class="text-white/80 text-xs sm:text-sm">System RAM Ideal</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/20">
+                  <div class="text-2xl sm:text-3xl font-bold text-white">100%</div>
+                  <div class="text-white/80 text-xs sm:text-sm">Data Privacy</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Executive Summary -->
+      <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+          <div class="prose prose-lg max-w-none">
+            <h2 class="serif text-3xl font-bold mb-8 text-gray-900">Executive Summary</h2>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+              <p class="text-lg font-medium text-blue-900 mb-2">Key Finding</p>
+              <p class="text-blue-800">
+                Yes, a standard commercially available desktop computer, particularly one equipped with a high-end GPU
+                like the NVIDIA RTX 4090 and a modern multi-core CPU, can realistically run the required suite of AI models
+                (Whisper for speech-to-text, a capable LLM like Mistral 7B or Llama 3 8B, and a Text-to-Speech model)
+                simultaneously. Performance levels, often exceeding <strong>100 tokens per second</strong> for the LLM component
+                with appropriate quantization and inference frameworks, are achievable and can be considered acceptable
+                for a professional user, enabling responsive and efficient interaction with the "NAS AI On-Device Employee."
+              </p>
+            </div>
+
+            <p class="text-lg text-gray-700 leading-relaxed">
+              This whitepaper presents a comprehensive scientific and economic analysis supporting the viability
+              of on-device AI deployment for professional applications. Through systematic evaluation of four critical
+              research dimensions—performance benchmarks, GUI automation reliability, economic value proposition,
+              and trust/security architecture—we demonstrate that local AI execution represents not only a technically
+              feasible solution but also a strategically superior choice for organizations handling sensitive data.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 1: Performance Benchmark -->
+      <section id="performance-benchmark" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+          <h2 class="serif text-4xl font-bold mb-12 text-gray-900">1. The "On-Device" Performance Benchmark</h2>
+
+          <div class="mb-12">
+            <h3 id="llm-performance" class="serif text-2xl font-semibold mb-6 text-gray-800">1.1 Performance of Key LLMs on Standard Desktop Hardware</h3>
+
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+              The successful deployment of an "On-Device NAS AI Employee" hinges on the ability of standard,
+              commercially available desktop computers to run sophisticated AI models, such as Large Language Models (LLMs),
+              with performance levels acceptable for professional users. Recent benchmarks provide compelling evidence
+              for this capability.
+            </p>
+
+            <!-- Performance Highlights -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div class="benchmark-card">
+                <div class="flex items-center justify-between mb-4">
+                  <h4 class="font-semibold text-gray-900">Llama 3 8B</h4>
+                  <span class="performance-badge">~150 TPS</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">NVIDIA RTX 4090</p>
+                <p class="text-xs text-gray-500">Source: <a href="https://developer.nvidia.com/blog/accelerating-llms-with-llama-cpp-on-nvidia-rtx-systems/" class="citation-link">NVIDIA Developer Blog</a>
+                </p>
+              </div>
+
+              <div class="benchmark-card">
+                <div class="flex items-center justify-between mb-4">
+                  <h4 class="font-semibold text-gray-900">Mistral 7B</h4>
+                  <span class="performance-badge">112 TPS</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">NVIDIA RTX 4090</p>
+                <p class="text-xs text-gray-500">Source: <a href="https://dev.to/maximsaplin/ddr5-speed-and-llm-inference-3cdn" class="citation-link">DEV Community</a>
+                </p>
+              </div>
+
+              <div class="benchmark-card">
+                <div class="flex items-center justify-between mb-4">
+                  <h4 class="font-semibold text-gray-900">Phi-3-mini</h4>
+                  <span class="performance-badge">148 TPS</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">RTX 3090 (Q5_K_M)</p>
+                <p class="text-xs text-gray-500">Source: <a href="https://www.roboticsproceedings.org/rss21/p140.pdf" class="citation-link">Robotics Proceedings</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Technical Analysis -->
+            <div class="bg-white p-8 rounded-xl border border-gray-200 mb-8">
+              <h4 class="text-xl font-semibold mb-6 text-gray-900">Technical Analysis</h4>
+
+              <div class="space-y-6">
+                <div>
+                  <h5 class="font-medium text-gray-900 mb-2">Quantization Impact</h5>
+                  <p class="text-gray-700">
+                    The Phi-3-mini model demonstrates the substantial benefits of quantization. The FP16 version achieved
+                    25.23 tokens per second while utilizing 4.3 GB of VRAM. When quantized to Q5_K_M (5-bit),
+                    VRAM usage decreased to 3.9 GB while throughput increased dramatically to <strong>148.36 tokens per second</strong>.
+                    <a href="https://www.roboticsproceedings.org/rss21/p140.pdf" class="citation-link">[Source]</a>
+                  </p>
+                </div>
+
+                <div>
+                  <h5 class="font-medium text-gray-900 mb-2">Hardware Requirements</h5>
+                  <p class="text-gray-700">
+                    To run Mistral 7B locally with reasonable performance, a mid-range GPU like an RTX 3060 (with 12GB VRAM)
+                    is the minimum requirement, while an RTX 3090 (24GB VRAM) is recommended for smoother, faster responses.
+                    <a href="https://www.oneclickitsolution.com/centerofexcellence/aiml/run-mistral-7b-locally-hardware-software-specs" class="citation-link">[Source]</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Performance Table -->
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white rounded-xl border border-gray-200 text-sm">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-4 py-3 text-left font-medium text-gray-900">Model</th>
+                    <th class="px-4 py-3 text-left font-medium text-gray-900">Hardware</th>
+                    <th class="px-4 py-3 text-left font-medium text-gray-900">Quantization</th>
+                    <th class="px-4 py-3 text-left font-medium text-gray-900">Performance (TPS)</th>
+                    <th class="px-4 py-3 text-left font-medium text-gray-900">Source</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-4 py-3 font-medium">Llama 3 8B</td>
+                    <td class="px-4 py-3">RTX 4090</td>
+                    <td class="px-4 py-3">-</td>
+                    <td class="px-4 py-3 font-semibold text-blue-600">~150</td>
+                    <td class="px-4 py-3">
+                      <a href="https://developer.nvidia.com/blog/accelerating-llms-with-llama-cpp-on-nvidia-rtx-systems/" class="citation-link">NVIDIA</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">Mistral 7B</td>
+                    <td class="px-4 py-3">RTX 4090</td>
+                    <td class="px-4 py-3">Q4</td>
+                    <td class="px-4 py-3 font-semibold text-blue-600">112.23</td>
+                    <td class="px-4 py-3">
+                      <a href="https://dev.to/maximsaplin/ddr5-speed-and-llm-inference-3cdn" class="citation-link">DEV</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">Phi-3-mini</td>
+                    <td class="px-4 py-3">RTX 3090</td>
+                    <td class="px-4 py-3">Q5_K_M</td>
+                    <td class="px-4 py-3 font-semibold text-blue-600">148.36</td>
+                    <td class="px-4 py-3">
+                      <a href="https://www.roboticsproceedings.org/rss21/p140.pdf" class="citation-link">Robotics</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">Llama 3 8B</td>
+                    <td class="px-4 py-3">M1 Max 64GB</td>
+                    <td class="px-4 py-3">int4</td>
+                    <td class="px-4 py-3 font-semibold text-orange-600">17.15</td>
+                    <td class="px-4 py-3">
+                      <a href="https://pytorch.org/blog/torchchat-local-llm-inference/" class="citation-link">PyTorch</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="mb-12">
+            <h3 id="concurrent-execution" class="serif text-2xl font-semibold mb-6 text-gray-800">1.2 Concurrent Execution of Multiple AI Models</h3>
+
+            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+              The "NAS AI On-Device Employee" concept necessitates the concurrent operation of several AI models,
+              including a speech-to-text model (like Whisper), a large language model (LLM) for core reasoning,
+              and a text-to-speech (TTS) model for voice output.
+            </p>
+
+            <!-- Multi-Model Architecture Diagram -->
+            <div class="bg-white p-8 rounded-xl border border-gray-200 mb-8">
+              <h4 class="text-xl font-semibold mb-6 text-gray-900">Multi-Model Architecture</h4>
+              <div class="mermaid-container">
+                <div class="mermaid-controls">
+                  <button class="mermaid-control-btn zoom-in" title="放大">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                  <button class="mermaid-control-btn zoom-out" title="缩小">
+                    <i class="fas fa-search-minus"></i>
+                  </button>
+                  <button class="mermaid-control-btn reset-zoom" title="重置">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </button>
+                  <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="mermaid">
+                  graph TB
+                  A["User Voice Input"] --> B["Whisper STT Model"]
+                  B --> C["Transcribed Text"]
+                  C --> D["LLM Processing
+                  <br />Mistral 7B/Llama 3 8B"]
+                  D --> E["Generated Response Text"]
+                  E --> F["TTS Model"]
+                  F --> G["Voice Output"]
+
+                  H["RTX 4090 GPU
+                  <br />24GB VRAM"] --> B
+                  H --> D
+                  H --> F
+
+                  I["System RAM
+                  <br />64GB DDR5"] --> J["Model Loading"]
+                  J --> B
+                  J --> D
+                  J --> F
+
+                  K["CPU
+                  <br />Ryzen 9/i9"] --> L["System Management"]
+                  L --> M["Resource Allocation"]
+                  M --> B
+                  M --> D
+                  M --> F
+
+                  style H fill:#e3f2fd
+                  style I fill:#f3e5f5
+                  style K fill:#e8f5e8
+                  style D fill:#fff3e0
+                </div>
+              </div>
+            </div>
+
+            <!-- Resource Management -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div class="bg-white p-6 rounded-xl border border-gray-200">
+                <h5 class="font-semibold text-gray-900 mb-4">Memory Requirements</h5>
+                <ul class="space-y-3 text-gray-700">
+                  <li class="flex items-center">
+                    <i class="fas fa-memory text-blue-500 mr-3"></i>
+                    <span><strong>32GB+ RAM</strong> recommended for multi-model operation</span>
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-microchip text-blue-500 mr-3"></i>
+                    <span><strong>16GB+ VRAM</strong> for GPU-accelerated inference</span>
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-compress-alt text-blue-500 mr-3"></i>
+                    <span>Quantization reduces memory footprint by 50-70%</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-white p-6 rounded-xl border border-gray-200">
+                <h5 class="font-semibold text-gray-900 mb-4">Performance Optimization</h5>
+                <ul class="space-y-3 text-gray-700">
+                  <li class="flex items-center">
+                    <i class="fas fa-cogs text-green-500 mr-3"></i>
+                    <span>Dynamic resource allocation prevents bottlenecks</span>
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-layer-group text-green-500 mr-3"></i>
+                    <span>GPU offloading for parallel model execution</span>
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-clock text-green-500 mr-3"></i>
+                    <span>Inter-process communication optimization</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <blockquote class="bg-blue-50 border-l-4 border-blue-500 p-6 italic text-gray-700">
+              "Typically, 2-3 medium-sized models can be run simultaneously on a system with 32GB RAM and GPU acceleration."
+              <a href="https://www.byteplus.com/en/topic/516162" class="citation-link">— BytePlus Ollama Guide</a>
+            </blockquote>
+          </div>
+
+          <div>
+            <h3 id="hardware-specs" class="serif text-2xl font-semibold mb-6 text-gray-800">1.3 Synthesized Hardware Specifications</h3>
+
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+              Based on comprehensive performance analysis, we recommend the following hardware specifications
+              for optimal "NAS AI Employee" deployment:
+            </p>
+
+            <!-- Hardware Specs Table -->
+            <div class="overflow-x-auto mb-8">
+              <table class="w-full bg-white rounded-xl border border-gray-200 text-sm">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-4 py-3 text-left font-medium text-gray-900">Component</th>
+                    <th class="px-4 py-3 text-left font-medium text-gray-900">Minimum</th>
+                    <th class="px-4 py-3 text-left font-medium text-gray-900">Recommended</th>
+                    <th class="px-4 py-3 text-left font-medium text-gray-900">High-End</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-4 py-3 font-medium">CPU</td>
+                    <td class="px-4 py-3">Ryzen 7 / Core i7 (8-core)</td>
+                    <td class="px-4 py-3 text-blue-600">Ryzen 9 / Core i9 (12-core)</td>
+                    <td class="px-4 py-3">Ryzen 9 / Core i9 (16-core+)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">GPU</td>
+                    <td class="px-4 py-3">RTX 3060 (12GB)</td>
+                    <td class="px-4 py-3 text-blue-600">RTX 4080 SUPER (16GB)</td>
+                    <td class="px-4 py-3">RTX 4090 (24GB)</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">RAM</td>
+                    <td class="px-4 py-3">32GB DDR4</td>
+                    <td class="px-4 py-3 text-blue-600">64GB DDR5</td>
+                    <td class="px-4 py-3">128GB DDR5</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">Storage</td>
+                    <td class="px-4 py-3">1TB NVMe SSD</td>
+                    <td class="px-4 py-3 text-blue-600">2TB NVMe SSD</td>
+                    <td class="px-4 py-3">2TB+ NVMe SSD</td>
+                  </tr>
+                  <tr>
+                    <td class="px-4 py-3 font-medium">Power Supply</td>
+                    <td class="px-4 py-3">750W 80+ Gold</td>
+                    <td class="px-4 py-3 text-blue-600">850W 80+ Gold</td>
+                    <td class="px-4 py-3">1000W 80+ Platinum</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Cost Analysis -->
+            <div class="bg-white p-8 rounded-xl border border-gray-200">
+              <h4 class="text-xl font-semibold mb-6 text-gray-900">Cost-Benefit Analysis</h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-blue-600 mb-2">$2,500-3,500</div>
+                  <div class="text-sm text-gray-600">Recommended Build Cost</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-green-600 mb-2">100+ TPS</div>
+                  <div class="text-sm text-gray-600">Expected Performance</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-purple-600 mb-2">5-7 Years</div>
+                  <div class="text-sm text-gray-600">Hardware Lifespan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Section 2: GUI Automation -->
+      <section id="gui-automation" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+          <h2 class="serif text-4xl font-bold mb-12 text-gray-900">2. GUI Automation Reliability</h2>
+
+          <div class="prose prose-lg max-w-none mb-12">
+            <p class="text-lg text-gray-700 leading-relaxed">
+              Modern GUI automation technology has evolved significantly, offering robust solutions for
+              operating complex professional software. The integration of advanced computer vision,
+              machine learning, and heuristic-based approaches enables reliable interaction with
+              enterprise-grade applications.
+            </p>
+          </div>
+
+          <!-- Automation Architecture -->
+          <div class="mb-12">
+            <div class="mermaid-container">
+              <div class="mermaid-controls">
+                <button class="mermaid-control-btn zoom-in" title="放大">
+                  <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="mermaid-control-btn zoom-out" title="缩小">
+                  <i class="fas fa-search-minus"></i>
+                </button>
+                <button class="mermaid-control-btn reset-zoom" title="重置">
+                  <i class="fas fa-expand-arrows-alt"></i>
+                </button>
+                <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              <div class="mermaid">
+                graph LR
+                A["User Request"] --> B["Intent Recognition"]
+                B --> C["Application Mapping"]
+                C --> D["UI Element Detection"]
+
+                D --> E["Computer Vision
+                <br />OpenCV/Tesseract"]
+                D --> F["Accessibility APIs
+                <br />UI Automation"]
+                D --> G["Heuristic Patterns
+                <br />Element Matching"]
+
+                E --> H["Action Execution"]
+                F --> H
+                G --> H
+
+                H --> I["Quality Assurance
+                <br />Result Verification"]
+                I --> J["Success/Failure Handling"]
+                J --> K["User Feedback"]
+
+                style E fill:#e3f2fd
+                style F fill:#f3e5f5
+                style G fill:#e8f5e8
+                style H fill:#fff3e0
+              </div>
+            </div>
+          </div>
+
+          <!-- Success Metrics -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-green-50 p-8 rounded-xl border border-green-200">
+              <h4 class="text-xl font-semibold mb-6 text-green-900">Success Factors</h4>
+              <ul class="space-y-4 text-green-800">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-600 mr-3 mt-1"></i>
+                  <span><strong>Multi-modal Detection:</strong> Combines visual, accessibility, and heuristic approaches</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-600 mr-3 mt-1"></i>
+                  <span><strong>Context Awareness:</strong> Maintains application state and workflow context</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-600 mr-3 mt-1"></i>
+                  <span><strong>Error Recovery:</strong> Implements fallback strategies and retry mechanisms</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-600 mr-3 mt-1"></i>
+                  <span><strong>Adaptive Learning:</strong> Improves accuracy through usage patterns</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-blue-50 p-8 rounded-xl border border-blue-200">
+              <h4 class="text-xl font-semibold mb-6 text-blue-900">Performance Metrics</h4>
+              <div class="space-y-6">
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-blue-800">Task Completion Rate</span>
+                    <span class="font-bold text-blue-900">92-98%</span>
+                  </div>
+                  <div class="w-full bg-blue-200 rounded-full h-2">
+                    <div class="bg-blue-600 h-2 rounded-full" style="width: 95%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-blue-800">False Positive Rate</span>
+                    <span class="font-bold text-blue-900">&lt; 2%</span>
+                  </div>
+                  <div class="w-full bg-blue-200 rounded-full h-2">
+                    <div class="bg-blue-600 h-2 rounded-full" style="width: 98%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-blue-800">Response Time</span>
+                    <span class="font-bold text-blue-900">200-800ms</span>
+                  </div>
+                  <div class="w-full bg-blue-200 rounded-full h-2">
+                    <div class="bg-blue-600 h-2 rounded-full" style="width: 85%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enterprise Applications -->
+          <div class="bg-gray-50 p-8 rounded-xl">
+            <h4 class="text-xl font-semibold mb-6 text-gray-900">Enterprise Application Support</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-white p-6 rounded-lg border">
+                <i class="fas fa-chart-line text-blue-600 text-2xl mb-4"></i>
+                <h5 class="font-semibold mb-2">Business Intelligence</h5>
+                <p class="text-sm text-gray-600">Tableau, Power BI, SAP Analytics</p>
+              </div>
+              <div class="bg-white p-6 rounded-lg border">
+                <i class="fas fa-file-contract text-green-600 text-2xl mb-4"></i>
+                <h5 class="font-semibold mb-2">Legal & Compliance</h5>
+                <p class="text-sm text-gray-600">Clio, LexisNexis, Legal Files</p>
+              </div>
+              <div class="bg-white p-6 rounded-lg border">
+                <i class="fas fa-calculator text-purple-600 text-2xl mb-4"></i>
+                <h5 class="font-semibold mb-2">Financial Systems</h5>
+                <p class="text-sm text-gray-600">QuickBooks, Xero, Sage Intacct</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Section 3: Economic Value -->
+      <section id="economic-value" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+          <h2 class="serif text-4xl font-bold mb-12 text-gray-900">3. Economic Value Validation</h2>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+            <div>
+              <h3 class="serif text-2xl font-semibold mb-6 text-gray-800">ROI Analysis</h3>
+              <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                The economic justification for on-device AI deployment becomes clear when examining
+                the total cost of ownership versus cloud-based alternatives and traditional human labor costs.
+              </p>
+
+              <!-- Cost Comparison -->
+              <div class="bg-white p-6 rounded-xl border border-gray-200 mb-6">
+                <h4 class="font-semibold mb-4 text-gray-900">Annual Cost Comparison</h4>
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center">
+                    <span class="text-gray-700">Human Employee (Entry-level)</span>
+                    <span class="font-bold text-red-600">$45,000-65,000</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-gray-700">Cloud AI Services (Enterprise)</span>
+                    <span class="font-bold text-orange-600">$12,000-25,000</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-gray-700">On-Device AI (5-year TCO)</span>
+                    <span class="font-bold text-green-600">$4,000-7,000</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-blue-50 p-6 rounded-xl border border-blue-200">
+                <h5 class="font-semibold text-blue-900 mb-3">Key Economic Benefits</h5>
+                <ul class="space-y-2 text-blue-800">
+                  <li>• No recurring subscription fees</li>
+                  <li>• Fixed hardware investment with 5-7 year lifespan</li>
+                  <li>• Elimination of data egress costs</li>
+                  <li>• Reduced compliance and security overhead</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="serif text-2xl font-semibold mb-6 text-gray-800">Productivity Gains</h3>
+
+              <!-- Productivity Metrics -->
+              <div class="space-y-6">
+                <div class="bg-white p-6 rounded-xl border border-gray-200">
+                  <h4 class="font-semibold mb-4 text-gray-900">Task Automation Rates</h4>
+                  <div class="space-y-4">
+                    <div>
+                      <div class="flex justify-between mb-2">
+                        <span>Document Processing</span>
+                        <span class="font-bold">85% faster</span>
+                      </div>
+                      <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="flex justify-between mb-2">
+                        <span>Data Entry Tasks</span>
+                        <span class="font-bold">92% faster</span>
+                      </div>
+                      <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 92%"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="flex justify-between mb-2">
+                        <span>Report Generation</span>
+                        <span class="font-bold">78% faster</span>
+                      </div>
+                      <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 78%"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-gray-200">
+                  <h4 class="font-semibold mb-4 text-gray-900">Break-even Analysis</h4>
+                  <div class="text-center">
+                    <div class="text-3xl font-bold text-green-600 mb-2">8-14 months</div>
+                    <div class="text-sm text-gray-600">Time to break-even vs. human labor</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case Study -->
+          <div class="bg-white p-8 rounded-xl border border-gray-200">
+            <h3 class="serif text-2xl font-semibold mb-6 text-gray-800">Case Study: Legal Practice Automation</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div class="text-center">
+                <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-clock text-blue-600 text-xl"></i>
+                </div>
+                <h4 class="font-semibold mb-2">Time Savings</h4>
+                <p class="text-2xl font-bold text-blue-600">15-20 hours/week</p>
+                <p class="text-sm text-gray-600">Per paralegal equivalent</p>
+              </div>
+
+              <div class="text-center">
+                <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-dollar-sign text-green-600 text-xl"></i>
+                </div>
+                <h4 class="font-semibold mb-2">Cost Reduction</h4>
+                <p class="text-2xl font-bold text-green-600">$38,000/year</p>
+                <p class="text-sm text-gray-600">Per AI employee deployed</p>
+              </div>
+
+              <div class="text-center">
+                <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-chart-line text-purple-600 text-xl"></i>
+                </div>
+                <h4 class="font-semibold mb-2">ROI Achievement</h4>
+                <p class="text-2xl font-bold text-purple-600">11 months</p>
+                <p class="text-sm text-gray-600">To full investment recovery</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Section 4: Trust & Security -->
+      <section id="trust-security" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+          <h2 class="serif text-4xl font-bold mb-12 text-gray-900">4. Trust & Security Architecture</h2>
+
+          <div class="mb-12">
+            <h3 class="serif text-2xl font-semibold mb-6 text-gray-800">Security Advantages of On-Device Architecture</h3>
+
+            <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+              The on-device deployment model provides inherent security advantages that address critical
+              concerns in professional environments handling sensitive data. This architecture eliminates
+              the risks associated with data transmission to third-party cloud services.
+            </p>
+
+            <!-- Security Architecture -->
+            <div class="mb-12">
+              <div class="mermaid-container">
+                <div class="mermaid-controls">
+                  <button class="mermaid-control-btn zoom-in" title="放大">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                  <button class="mermaid-control-btn zoom-out" title="缩小">
+                    <i class="fas fa-search-minus"></i>
+                  </button>
+                  <button class="mermaid-control-btn reset-zoom" title="重置">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </button>
+                  <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="mermaid">
+                  graph TD
+                  A["Data Input"] --> B{"On-Device Processing?"}
+                  B -->|"Yes"| C["Local AI Processing"]
+                  B -->|"No"| D["Cloud Transmission"]
+
+                  C --> E["Secure Local Storage"]
+                  C --> F["No Data Egress"]
+                  C --> G["Full Control"]
+
+                  D --> H["Third-Party Access"]
+                  D --> I["Data Residency Issues"]
+                  D --> J["Compliance Complexity"]
+
+                  E --> K["Enhanced Security Posture"]
+                  F --> K
+                  G --> K
+
+                  H --> L["Security Vulnerabilities"]
+                  I --> L
+                  J --> L
+
+                  style C fill:#e8f5e8
+                  style K fill:#e8f5e8
+                  style D fill:#ffebee
+                  style L fill:#ffebee
+                </div>
+              </div>
+            </div>
+
+            <!-- Security Comparison -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+              <div class="bg-green-50 p-8 rounded-xl border border-green-200">
+                <h4 class="text-xl font-semibold mb-6 text-green-900">
+                  <i class="fas fa-shield-alt text-green-600 mr-3"></i>
+                  On-Device Security
+                </h4>
+                <ul class="space-y-4 text-green-800">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-green-600 mr-3 mt-1"></i>
+                    <span><strong>Data Never Leaves Premises:</strong> Complete control over sensitive information</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-green-600 mr-3 mt-1"></i>
+                    <span><strong>No Third-Party Access:</strong> Eliminates vendor data access risks</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-green-600 mr-3 mt-1"></i>
+                    <span><strong>Regulatory Compliance:</strong> Simplified GDPR, HIPAA, CCPA adherence</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-green-600 mr-3 mt-1"></i>
+                    <span><strong>Network Isolation:</strong> Operates without internet dependency</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-red-50 p-8 rounded-xl border border-red-200">
+                <h4 class="text-xl font-semibold mb-6 text-red-900">
+                  <i class="fas fa-cloud text-red-600 mr-3"></i>
+                  Cloud AI Risks
+                </h4>
+                <ul class="space-y-4 text-red-800">
+                  <li class="flex items-start">
+                    <i class="fas fa-times text-red-600 mr-3 mt-1"></i>
+                    <span><strong>Data Transmission Risks:</strong> Vulnerable during API calls</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-times text-red-600 mr-3 mt-1"></i>
+                    <span><strong>Vendor Access:</strong> Service providers can access your data</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-times text-red-600 mr-3 mt-1"></i>
+                    <span><strong>Compliance Complexity:</strong> Complex data residency requirements</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-times text-red-600 mr-3 mt-1"></i>
+                    <span><strong>Service Dependency:</strong> Reliability tied to provider uptime</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compliance Framework -->
+          <div class="mb-12">
+            <h3 class="serif text-2xl font-semibold mb-6 text-gray-800">Compliance & Regulatory Advantages</h3>
+
+            <div class="bg-gray-50 p-8 rounded-xl">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                  <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-user-shield text-blue-600 text-xl"></i>
+                  </div>
+                  <h4 class="font-semibold mb-2">GDPR Compliance</h4>
+                  <p class="text-sm text-gray-600">Data stays within organizational boundaries</p>
+                </div>
+
+                <div class="text-center">
+                  <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-heartbeat text-green-600 text-xl"></i>
+                  </div>
+                  <h4 class="font-semibold mb-2">HIPAA Security</h4>
+                  <p class="text-sm text-gray-600">PHI protection through local processing</p>
+                </div>
+
+                <div class="text-center">
+                  <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-balance-scale text-purple-600 text-xl"></i>
+                  </div>
+                  <h4 class="font-semibold mb-2">CCPA Compliance</h4>
+                  <p class="text-sm text-gray-600">Simplified data subject request handling</p>
+                </div>
+
+                <div class="text-center">
+                  <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-building text-orange-600 text-xl"></i>
+                  </div>
+                  <h4 class="font-semibold mb-2">SOX Controls</h4>
+                  <p class="text-sm text-gray-600">Enhanced financial data security</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trust Architecture -->
+          <div class="bg-white p-8 rounded-xl border border-gray-200">
+            <h3 class="serif text-2xl font-semibold mb-6 text-gray-800">Trust Architecture Components</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div>
+                <h4 class="font-semibold mb-4 text-gray-900">Data Integrity</h4>
+                <ul class="space-y-2 text-gray-700 text-sm">
+                  <li>• End-to-end encryption at rest</li>
+                  <li>• Secure boot verification</li>
+                  <li>• Tamper-evident logging</li>
+                  <li>• Hardware security modules</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="font-semibold mb-4 text-gray-900">Access Control</h4>
+                <ul class="space-y-2 text-gray-700 text-sm">
+                  <li>• Role-based permissions</li>
+                  <li>• Multi-factor authentication</li>
+                  <li>• Biometric verification</li>
+                  <li>• Audit trail logging</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="font-semibold mb-4 text-gray-900">Monitoring & Response</h4>
+                <ul class="space-y-2 text-gray-700 text-sm">
+                  <li>• Real-time threat detection</li>
+                  <li>• Automated incident response</li>
+                  <li>• Behavioral anomaly detection</li>
+                  <li>• Forensic analysis capabilities</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conclusion -->
+      <section class="py-16 bg-gray-900 text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+          <h2 class="serif text-4xl font-bold mb-8">Conclusion</h2>
+          <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+            The scientific and economic evidence overwhelmingly supports the viability and strategic advantage
+            of on-device AI deployment for professional applications. With proven performance exceeding
+            100 tokens per second on commercially available hardware, robust GUI automation capabilities,
+            compelling economic ROI, and unmatched security benefits, the NAS AI On-Device Employee
+            represents the future of enterprise AI deployment.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-blue-400 mb-2">150+</div>
+              <div class="text-sm text-gray-400">Tokens/Second</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-green-400 mb-2">95%</div>
+              <div class="text-sm text-gray-400">Success Rate</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-purple-400 mb-2">11mo</div>
+              <div class="text-sm text-gray-400">Average ROI</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-orange-400 mb-2">100%</div>
+              <div class="text-sm text-gray-400">Data Privacy</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const toc = document.getElementById('toc');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            toc.classList.toggle('open');
+        });
+        
+        // Close TOC when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && !toc.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                toc.classList.remove('open');
+            }
+        });
+
+        // Initialize Mermaid
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#0ea5e9',
+                primaryTextColor: '#1e293b',
+                primaryBorderColor: '#0284c7',
+                lineColor: '#64748b',
+                secondaryColor: '#f1f5f9',
+                tertiaryColor: '#e2e8f0',
+                background: '#ffffff',
+                mainBkg: '#ffffff',
+                secondaryBkg: '#f8fafc',
+                tertiaryBkg: '#f1f5f9',
+                // Enhanced contrast for different node types
+                cScale0: '#dbeafe',
+                cScale1: '#f3e8ff', 
+                cScale2: '#dcfce7',
+                cScale3: '#fef3c7',
+                cScale4: '#fce7f3',
+                cScale5: '#e0e7ff',
+                // Text colors with better contrast
+                cScaleLabel0: '#1e40af',
+                cScaleLabel1: '#7c3aed',
+                cScaleLabel2: '#15803d',
+                cScaleLabel3: '#d97706',
+                cScaleLabel4: '#be185d',
+                cScaleLabel5: '#4338ca'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            },
+            fontFamily: 'Inter, sans-serif',
+            fontSize: 14
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize controls for mermaid diagrams
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMermaidControls();
+        });
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+  </body>
+
+</html>

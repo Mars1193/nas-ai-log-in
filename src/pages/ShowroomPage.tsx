@@ -98,7 +98,7 @@ const employeesApi = {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 1200));
     
-    // Mock API response with updated video URLs
+    // Mock API response with ALL employees and updated video URLs
     const mockEmployees: Employee[] = [
       {
         id: 'ai-accountant-001',
@@ -112,7 +112,7 @@ const employeesApi = {
         capabilities_en: ['Financial Analysis & Reporting', 'Automated Invoice Processing', 'Payroll Management', 'Tax Compliance Monitoring'],
         capabilities_ar: ['التحليل والتقارير المالية', 'معالجة الفواتير الآلية', 'إدارة كشوف المرتبات', 'مراقبة الامتثال الضريبي'],
         price_monthly: 15000,
-        video_url: '/videos/NAS-AI-ACCOUNTANT.mp4', // <-- UPDATED VIDEO
+        video_url: '/videos/NAS-AI-ACCOUNTANT.mp4',
         specs: {
           processor: 'AMD Ryzen 9 7950X (16-core, 32-thread)',
           memory: '64GB DDR5-6000 ECC',
@@ -134,7 +134,7 @@ const employeesApi = {
         capabilities_en: ['AI-Powered Recruitment Analysis', 'Automated Leave Management', 'Performance Tracking & Analytics', 'Policy Compliance Enforcement'],
         capabilities_ar: ['تحليل التوظيف المدعوم بالذكاء الاصطناعي', 'إدارة الإجازات الآلية', 'تتبع الأداء والتحليلات', 'إنفاذ الامتثال للسياسات'],
         price_monthly: 18000,
-        video_url: '/videos/NAS-AI-HR.mp4', // <-- UPDATED VIDEO
+        video_url: '/videos/NAS-AI-HR.mp4',
         specs: {
           processor: 'AMD Ryzen 9 7950X (16-core, 32-thread)',
           memory: '64GB DDR5-6000 ECC',
@@ -144,7 +144,160 @@ const employeesApi = {
           os: 'Ubuntu 22.04 LTS + NAS-AI HR Suite'
         }
       },
-      // ... (other employees remain the same)
+      {
+        id: 'ai-business-assistant-003',
+        name_en: 'AI Business Assistant',
+        name_ar: 'مساعد الأعمال الذكي',
+        title_en: 'Strategic Operations Facilitator',
+        title_ar: 'ميسر العمليات الاستراتيجية',
+        category: 'business',
+        description_en: 'Optimizes business operations, automates routine tasks, and provides strategic insights to enhance overall efficiency and decision-making.',
+        description_ar: 'يعمل على تحسين العمليات التجارية، وأتمتة المهام الروتينية، وتقديم رؤى استراتيجية لتعزيز الكفاءة العامة واتخاذ القرارات.',
+        capabilities_en: ['Operational Optimization', 'Task Automation', 'Strategic Planning Support', 'Data-Driven Insights'],
+        capabilities_ar: ['تحسين العمليات', 'أتمتة المهام', 'دعم التخطيط الاستراتيجي', 'رؤى تعتمد على البيانات'],
+        price_monthly: 20000,
+        video_url: '/videos/AI Business Assistant.mp4',
+        specs: {
+          processor: 'Intel Xeon E-2388G (8-core, 16-thread)',
+          memory: '128GB DDR4-3200 ECC',
+          storage: '8TB NVMe Gen4 (System) + 16TB NVMe Gen4 (Data)',
+          gpu: 'NVIDIA A40 (48GB GDDR6)',
+          cooling: 'Advanced liquid cooling system',
+          os: 'Windows Server 2022 + NAS-AI Business Suite'
+        }
+      },
+      {
+        id: 'ai-executive-assistant-004',
+        name_en: 'AI Executive Assistant',
+        name_ar: 'المساعد التنفيذي الذكي',
+        title_en: 'High-Level Administrative Support',
+        title_ar: 'دعم إداري رفيع المستوى',
+        category: 'support',
+        description_en: 'Provides comprehensive administrative support to executives, managing schedules, communications, and critical information flow.',
+        description_ar: 'يقدم دعمًا إداريًا شاملاً للمديرين التنفيذيين، ويدير الجداول الزمنية، والاتصالات، وتدفق المعلومات الحيوية.',
+        capabilities_en: ['Calendar Management', 'Email & Communication Handling', 'Meeting Preparation', 'Information Synthesis'],
+        capabilities_ar: ['إدارة التقويم', 'معالجة البريد الإلكتروني والاتصالات', 'إعداد الاجتماعات', 'توليف المعلومات'],
+        price_monthly: 17000,
+        video_url: '/videos/AI Executive Assistant.mp4',
+        specs: {
+          processor: 'Intel Core i9-13900K (24-core, 32-thread)',
+          memory: '64GB DDR5-6400',
+          storage: '4TB NVMe Gen4',
+          gpu: 'Integrated Intel Iris Xe Graphics',
+          cooling: 'High-performance air cooling',
+          os: 'macOS Ventura + NAS-AI Executive Suite'
+        }
+      },
+      {
+        id: 'ai-executive-purchasing-005',
+        name_en: 'AI Executive Purchasing',
+        name_ar: 'المساعد التنفيذي للمشتريات الذكي',
+        title_en: 'Procurement Optimization Specialist',
+        title_ar: 'أخصائي تحسين المشتريات',
+        category: 'finance',
+        description_en: 'Automates and optimizes the procurement process, from vendor selection to order management, ensuring cost-effectiveness and supply chain efficiency.',
+        description_ar: 'يقوم بأتمتة وتحسين عملية الشراء، من اختيار الموردين إلى إدارة الطلبات، مما يضمن فعالية التكلفة وكفاءة سلسلة التوريد.',
+        capabilities_en: ['Vendor Management', 'Automated Order Processing', 'Cost Analysis', 'Supply Chain Optimization'],
+        capabilities_ar: ['إدارة الموردين', 'معالجة الطلبات الآلية', 'تحليل التكلفة', 'تحسين سلسلة التوريد'],
+        price_monthly: 16500,
+        video_url: '/videos/AI Executive PURCHASING.mp4',
+        specs: {
+          processor: 'AMD Ryzen 7 7700X (8-core, 16-thread)',
+          memory: '32GB DDR5-6000',
+          storage: '2TB NVMe Gen4',
+          gpu: 'NVIDIA RTX 3060 (12GB GDDR6)',
+          cooling: 'Liquid AIO cooler',
+          os: 'Ubuntu 22.04 LTS + NAS-AI Procurement Suite'
+        }
+      },
+      {
+        id: 'ai-customer-support-006',
+        name_en: 'AI Customer Support',
+        name_ar: 'دعم العملاء الذكي',
+        title_en: 'Customer Experience Enhancer',
+        title_ar: 'محسن تجربة العملاء',
+        category: 'support',
+        description_en: 'Provides instant and personalized customer support, resolving queries, and improving overall customer satisfaction through AI-driven interactions.',
+        description_ar: 'يقدم دعمًا فوريًا ومخصصًا للعملاء، ويحل الاستفسارات، ويحسن رضا العملاء بشكل عام من خلال التفاعلات المدعومة بالذكاء الاصطناعي.',
+        capabilities_en: ['24/7 Customer Assistance', 'Automated Troubleshooting', 'Personalized Recommendations', 'Sentiment Analysis'],
+        capabilities_ar: ['مساعدة العملاء على مدار الساعة طوال أيام الأسبوع', 'استكشاف الأخطاء وإصلاحها تلقائيًا', 'توصيات مخصصة', 'تحليل المشاعر'],
+        price_monthly: 14000,
+        video_url: '/videos/AI_Customer_Support_.mp4',
+        specs: {
+          processor: 'Intel Core i7-13700K (16-core, 24-thread)',
+          memory: '32GB DDR5-5600',
+          storage: '1TB NVMe Gen4',
+          gpu: 'Integrated Intel UHD Graphics 770',
+          cooling: 'Air cooler',
+          os: 'Windows 11 Pro + NAS-AI Customer Service Suite'
+        }
+      },
+      {
+        id: 'ai-medical-assistant-007',
+        name_en: 'AI Medical Assistant',
+        name_ar: 'المساعد الطبي الذكي',
+        title_en: 'Healthcare Data Analyst',
+        title_ar: 'محلل بيانات الرعاية الصحية',
+        category: 'healthcare',
+        description_en: 'Assists medical professionals with data analysis, diagnosis support, and administrative tasks, enhancing patient care efficiency and accuracy.',
+        description_ar: 'يساعد المهنيين الطبيين في تحليل البيانات، ودعم التشخيص، والمهام الإدارية، مما يعزز كفاءة ودقة رعاية المرضى.',
+        capabilities_en: ['Medical Data Interpretation', 'Diagnostic Support', 'Patient Record Management', 'Research Assistance'],
+        capabilities_ar: ['تفسير البيانات الطبية', 'دعم التشخيص', 'إدارة سجلات المرضى', 'مساعدة البحث'],
+        price_monthly: 19000,
+        video_url: '/videos/AI_Medical_Assistant.mp4',
+        specs: {
+          processor: 'AMD Ryzen 9 7900X (12-core, 24-thread)',
+          memory: '64GB DDR5-6000 ECC',
+          storage: '4TB NVMe Gen4',
+          gpu: 'NVIDIA RTX 4080 (16GB GDDR6X)',
+          cooling: 'Custom liquid cooling',
+          os: 'Linux (Fedora) + NAS-AI Medical Suite'
+        }
+      },
+      {
+        id: 'nas-ai-coordinator-008',
+        name_en: 'NAS AI Coordinator',
+        name_ar: 'منسق الذكاء الاصطناعي NAS',
+        title_en: 'AI System Integration Specialist',
+        title_ar: 'أخصائي تكامل أنظمة الذكاء الاصطناعي',
+        category: 'technology',
+        description_en: 'Manages and coordinates the integration of various AI systems within an organization, ensuring seamless communication and optimal performance.',
+        description_ar: 'يدير وينسق تكامل أنظمة الذكاء الاصطناعي المختلفة داخل المؤسسة، مما يضمن التواصل السلس والأداء الأمثل.',
+        capabilities_en: ['System Integration', 'Workflow Automation', 'Performance Monitoring', 'Troubleshooting & Maintenance'],
+        capabilities_ar: ['تكامل الأنظمة', 'أتمتة سير العمل', 'مراقبة الأداء', 'استكشاف الأخطاء وإصلاحها والصيانة'],
+        price_monthly: 22000,
+        video_url: '/videos/cordinator.mp4',
+        specs: {
+          processor: 'Intel Xeon Platinum 8480+ (56-core, 112-thread)',
+          memory: '256GB DDR5-4800 ECC',
+          storage: '10TB NVMe Gen5 (System) + 20TB NVMe Gen5 (Data)',
+          gpu: 'NVIDIA H100 (80GB HBM3)',
+          cooling: 'Rack-mounted liquid cooling',
+          os: 'VMware ESXi + NAS-AI Orchestration Platform'
+        }
+      },
+      {
+        id: 'nas-ai-law-assistant-009',
+        name_en: 'NAS AI Law Assistant',
+        name_ar: 'مساعد القانون الذكي NAS',
+        title_en: 'Legal Research & Analysis AI',
+        title_ar: 'الذكاء الاصطناعي للبحث والتحليل القانوني',
+        category: 'legal',
+        description_en: 'Assists legal professionals with extensive legal research, document review, and case analysis, significantly reducing time and improving accuracy.',
+        description_ar: 'يساعد المهنيين القانونيين في البحث القانوني الشامل، ومراجعة المستندات، وتحليل القضايا، مما يقلل بشكل كبير من الوقت ويحسن الدقة.',
+        capabilities_en: ['Legal Document Review', 'Case Precedent Analysis', 'Contract Drafting Support', 'Regulatory Compliance'],
+        capabilities_ar: ['مراجعة المستندات القانونية', 'تحليل السوابق القضائية', 'دعم صياغة العقود', 'الامتثال التنظيمي'],
+        price_monthly: 21000,
+        video_url: '/videos/NAS-AI-LAW ASSISTANT.mp4',
+        specs: {
+          processor: 'AMD EPYC 9654 (96-core, 192-thread)',
+          memory: '192GB DDR5-4800 ECC',
+          storage: '6TB NVMe Gen4',
+          gpu: 'NVIDIA RTX 6000 Ada Generation (48GB GDDR6)',
+          cooling: 'Liquid cooling',
+          os: 'Ubuntu 22.04 LTS + NAS-AI Legal Suite'
+        }
+      }
     ];
 
     return {
@@ -203,6 +356,10 @@ const translations = {
     'showroom.sales': 'Sales', 
     'showroom.support': 'Support',
     'showroom.analytics': 'Analytics',
+    'showroom.business': 'Business',
+    'showroom.technology': 'Technology',
+    'showroom.legal': 'Legal',
+    'showroom.healthcare': 'Healthcare',
     'showroom.showingResults': (f: number, t: number) => `Displaying ${f} of ${t} AI Employees`,
     'showroom.noResults': 'No Employees Found',
     'showroom.noResultsDescription': 'Your search criteria did not match any of our AI specialists. Please try a different term.',
@@ -222,6 +379,10 @@ const translations = {
     'showroom.sales': 'المبيعات',
     'showroom.support': 'الدعم',
     'showroom.analytics': 'التحليلات',
+    'showroom.business': 'أعمال',
+    'showroom.technology': 'تقنية',
+    'showroom.legal': 'قانوني',
+    'showroom.healthcare': 'رعاية صحية',
     'showroom.showingResults': (f: number, t: number) => `عرض ${f} من ${t} موظف ذكي`,
     'showroom.noResults': 'لم يتم العثور على موظفين',
     'showroom.noResultsDescription': 'لم تتطابق معايير البحث مع أي من متخصصي الذكاء الاصطناعي لدينا. يرجى تجربة مصطلح مختلف.',
@@ -348,9 +509,12 @@ const ShowroomPage = () => {
   const categories = useMemo(() => [
     { value: 'all', label: t('showroom.all', language) },
     { value: 'finance', label: t('showroom.finance', language) },
-    { value: 'sales', label: t('showroom.sales', language) },
     { value: 'support', label: t('showroom.support', language) },
     { value: 'analytics', label: t('showroom.analytics', language) },
+    { value: 'business', label: t('showroom.business', language) },
+    { value: 'technology', label: t('showroom.technology', language) },
+    { value: 'legal', label: t('showroom.legal', language) },
+    { value: 'healthcare', label: t('showroom.healthcare', language) },
   ], [language]);
 
   const filteredEmployees = useMemo(() => employees.filter(employee => {
