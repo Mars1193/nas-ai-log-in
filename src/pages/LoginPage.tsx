@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext'; // Import useAuth
+import React, { useState, useEffect } from 'react'; // FIXED: Added useEffect
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/lib/supabase';
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -8,20 +9,33 @@ const LoginPage = () => {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const { login } = useAuth(); // Use login from AuthContext
+    const { user } = useAuth();
 
-    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => { // Added type for e
+    useEffect(() => {
+        // Redirect if the user is already logged in
+        if (user) {
+            navigate('/dashboard');
+        }
+    }, [user, navigate]);
+
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
 
         try {
-            await login(email, password); // Use login function from AuthContext
+            const { error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            });
+
+            if (error) throw error;
             
-            navigate('/profile');
+            // The onAuthStateChange listener in AuthContext will handle setting the user session.
+            // The useEffect hook will then redirect to the dashboard.
 
         } catch (error: any) {
-            setError(error.message);
+            setError(error.message || "An error occurred during login.");
         } finally {
             setLoading(false);
         }
@@ -33,7 +47,7 @@ const LoginPage = () => {
             <div className="w-full md:w-1/2 h-64 md:h-screen relative overflow-hidden">
                 <video
                     className="absolute top-0 left-0 w-full h-full object-cover"
-                    src="/videos/75463f9b-449a-4da1-a81f-492a7f8553af.mp4" // Updated video path
+                    src="/videos/75463f9b-449a-4da1-a81f-492a7f8553af.mp4"
                     autoPlay
                     loop
                     muted
@@ -78,9 +92,9 @@ const LoginPage = () => {
                     </form>
                     <p className="text-center text-sm text-gray-400">
                         Don't have an account?{' '}
-                        <a href="/signup" className="font-medium text-[#00F0FF] hover:underline">
+                        <Link to="/signup" className="font-medium text-[#00F0FF] hover:underline">
                             Sign Up
-                        </a>
+                        </Link>
                     </p>
                 </div>
             </div>
