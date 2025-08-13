@@ -15,6 +15,8 @@ import PhilosophyPage from './pages/PhilosophyPage';
 import ContactPage from './pages/ContactPage';
 import ResearchPage from './pages/ResearchPage';
 import AuthCallback from './pages/AuthCallback';
+import OrchestraPage from './pages/OrchestraPage';
+import AboutUsPage from './pages/AboutUsPage';
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
             <Route path="philosophy" element={<PhilosophyPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="research" element={<ResearchPage />} />
+            <Route path="orchestra" element={<OrchestraPage />} />
+            <Route path="about-us" element={<AboutUsPage />} />
 
             {/* Protected Routes (require login) */}
             <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />

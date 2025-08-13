@@ -155,6 +155,28 @@ export interface Translation {
   businessAssistantTitle: string;
   getStarted: string;
   learnMore: string;
+
+  // Orchestra Page
+  orchestraTitle: string;
+  orchestraSubtitle: string;
+  employeesBank: string;
+  workspace: string;
+  startSimulation: string;
+  theLab: string;
+
+  // About Us Page
+  aboutUs: string;
+  aboutUsTitle: string;
+  aboutUsOpeningTitle: string;
+  aboutUsOpeningContent: string;
+  aboutUsCreedTitle: string;
+  aboutUsCreedContent: string;
+  aboutUsPathsTitle: string;
+  aboutUsPathsContent: string;
+  aboutUsVisionTitle: string;
+  aboutUsVisionContent: string;
+  dashboard: string;
+  logout: string;
 }
 
 export const translations: Record<'en' | 'ar', Translation> = {
@@ -314,7 +336,29 @@ export const translations: Record<'en' | 'ar', Translation> = {
     purchasingSpecialistTitle: "AI Purchasing Specialist Unit",
     businessAssistantTitle: "AI Business Assistant Unit",
     getStarted: "Get Started",
-    learnMore: "Learn More"
+    learnMore: "Learn More",
+
+    // Orchestra Page
+    orchestraTitle: "The Lab: Build Your AI Orchestra",
+    orchestraSubtitle: "Drag and drop digital employees into the workspace to assemble your team, then start the simulation to see them in action.",
+    employeesBank: "Employees Bank",
+    workspace: "Workspace",
+    startSimulation: "Start Simulation",
+    theLab: "The Lab",
+
+    // About Us Page
+    aboutUs: "About Us",
+    aboutUsTitle: "About Us: A New Era of Digital Sovereignty",
+    aboutUsOpeningTitle: "Who We Are: A New Era of Digital Sovereignty",
+    aboutUsOpeningContent: "We are not just a technology company. We are architects of a new paradigm where businesses own their digital capabilities, moving from renting transient AI services to owning a permanent, intelligent workforce.",
+    aboutUsCreedTitle: "Our Creed: Absolute Sovereignty and Unlimited Execution",
+    aboutUsCreedContent: "Our philosophy is built on three pillars: 1) Full Ownership: You own the AI, the data, and the operational logic. 2) Unrestricted Control: Your AI works on your terms, without external dependencies. 3) Infinite Potential: An AI workforce that grows with you, continuously learning and adapting.",
+    aboutUsPathsTitle: "The Three Paths to Sovereignty",
+    aboutUsPathsContent: "The Lab (Experiment and learn), The Fast Track (Deploy pre-built AI employees), The Ultimate Solution (Custom-built AI ecosystems). Each path is a step towards complete digital independence.",
+    aboutUsVisionTitle: "The Vision: You are the Maestro. This is Your Orchestra.",
+    aboutUsVisionContent: "We provide the instruments, the stage, and the score. You conduct the symphony. Your vision, powered by your AI orchestra, will redefine what's possible in your industry.",
+    dashboard: "Dashboard",
+    logout: "Logout"
   },
   ar: {
     // Showroom Page
@@ -472,7 +516,29 @@ export const translations: Record<'en' | 'ar', Translation> = {
     purchasingSpecialistTitle: "وحدة أخصائي المشتريات الذكي",
     businessAssistantTitle: "وحدة المساعد التجاري الذكي",
     getStarted: "ابدأ الآن",
-    learnMore: "اعرف المزيد"
+    learnMore: "اعرف المزيد",
+
+    // Orchestra Page
+    orchestraTitle: "المختبر: كوّن أوركسترا الذكاء الاصطناعي الخاصة بك",
+    orchestraSubtitle: "اسحب وأفلت الموظفين الرقميين في مساحة العمل لتجميع فريقك، ثم ابدأ المحاكاة لرؤيتهم أثناء العمل.",
+    employeesBank: "بنك الموظفين",
+    workspace: "مساحة العمل",
+    startSimulation: "بدء المحاكاة",
+    theLab: "المختبر",
+
+    // About Us Page
+    aboutUs: "من نحن",
+    aboutUsTitle: "من نحن: عهد جديد من السيادة الرقمية",
+    aboutUsOpeningTitle: "من نحن: عهد جديد من السيادة الرقمية",
+    aboutUsOpeningContent: "نحن لسنا مجرد شركة تقنية. نحن مهندسو نموذج جديد حيث تمتلك الشركات قدراتها الرقمية، وتنتقل من استئجار خدمات الذكاء الاصطناعي العابرة إلى امتلاك قوة عاملة ذكية ودائمة.",
+    aboutUsCreedTitle: "عقيدتنا: السيادة المطلقة والتنفيذ غير المحدود",
+    aboutUsCreedContent: "تقوم فلسفتنا على ثلاث ركائز: 1) الملكية الكاملة: أنت تمتلك الذكاء الاصطناعي والبيانات والمنطق التشغيلي. 2) التحكم غير المقيد: يعمل الذكاء الاصطناعي الخاص بك وفقًا لشروطك، دون تبعيات خارجية. 3) إمكانات لا حصر لها: قوة عاملة في مجال الذكاء الاصطناعي تنمو معك وتتعلم وتتكيف باستمرار.",
+    aboutUsPathsTitle: "المسارات الثلاثة للسيادة",
+    aboutUsPathsContent: "المختبر (جرب وتعلم)، المسار السريع (انشر موظفي الذكاء الاصطناعي المعدين مسبقًا)، الحل النهائي (أنظمة ذكاء اصطناعي مخصصة). كل مسار هو خطوة نحو الاستقلال الرقمي الكامل.",
+    aboutUsVisionTitle: "الرؤية: أنت المايسترو. وهذه هي أوركستراك.",
+    aboutUsVisionContent: "نحن نقدم الآلات والمسرح والنتيجة. وأنت تقود السيمفونية. رؤيتك، مدعومة بأوركسترا الذكاء الاصطناعي الخاصة بك، ستعيد تعريف ما هو ممكن في مجال عملك.",
+    dashboard: "لوحة التحكم",
+    logout: "تسجيل الخروج"
   }
 };
 
