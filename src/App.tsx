@@ -11,12 +11,12 @@ import DashboardPage from './pages/DashboardPage';
 import ShowroomPage from './pages/ShowroomPage';
 import ServicesPage from './pages/ServicesPage';
 import ROICalculatorPage from './pages/ROICalculatorPage';
-import PhilosophyPage from './pages/PhilosophyPage';
 import ContactPage from './pages/ContactPage';
 import ResearchPage from './pages/ResearchPage';
 import AuthCallback from './pages/AuthCallback';
-import OrchestraPage from './pages/OrchestraPage';
 import AboutUsPage from './pages/AboutUsPage';
+import SellYourFacePage from './pages/SellYourFacePage';
+import OrchestraPage from './pages/OrchestraPage';
 
 function App() {
   return (
@@ -32,11 +32,11 @@ function App() {
           <Route path="/" element={<Layout />}>
             {/* Public Routes */}
             <Route index element={<HomePage />} />
-            <Route path="philosophy" element={<PhilosophyPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="research" element={<ResearchPage />} />
-            <Route path="orchestra" element={<OrchestraPage />} />
             <Route path="about-us" element={<AboutUsPage />} />
+            <Route path="sell-your-face" element={<SellYourFacePage />} />
+            <Route path="orchestra" element={<OrchestraPage />} />
 
             {/* Protected Routes (require login) */}
             <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />

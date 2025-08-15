@@ -156,27 +156,9 @@ export interface Translation {
   getStarted: string;
   learnMore: string;
 
-  // Orchestra Page
-  orchestraTitle: string;
-  orchestraSubtitle: string;
-  employeesBank: string;
-  workspace: string;
-  startSimulation: string;
-  theLab: string;
-
   // About Us Page
   aboutUs: string;
-  aboutUsTitle: string;
-  aboutUsOpeningTitle: string;
-  aboutUsOpeningContent: string;
-  aboutUsCreedTitle: string;
-  aboutUsCreedContent: string;
-  aboutUsPathsTitle: string;
-  aboutUsPathsContent: string;
-  aboutUsVisionTitle: string;
-  aboutUsVisionContent: string;
-  dashboard: string;
-  logout: string;
+  aboutUsContent: string;
 }
 
 export const translations: Record<'en' | 'ar', Translation> = {
@@ -210,8 +192,8 @@ export const translations: Record<'en' | 'ar', Translation> = {
     contact: "Contact",
     login: "Login",
     signup: "Sign Up",
-    mainHeadline: "STOP RENTING AI. OWN YOUR WORKFORCE.",
-    subHeadline: "Built with today's proven technology, delivering tomorrow's workforce.",
+    mainHeadline: "World First real AI Employee for office jobs",
+    subHeadline: "The Digital Workforce is Here.",
     exploreShowroom: "Explore The Showroom",
     aiEmployeeTitle: "AI Employee - Not Just a Computer",
     aiEmployeeDesc: "We don't sell ordinary computers or smart apps. We provide you with a fixed AI employee that can perform all office tasks with efficiency exceeding human employees.",
@@ -338,27 +320,29 @@ export const translations: Record<'en' | 'ar', Translation> = {
     getStarted: "Get Started",
     learnMore: "Learn More",
 
-    // Orchestra Page
-    orchestraTitle: "The Lab: Build Your AI Orchestra",
-    orchestraSubtitle: "Drag and drop digital employees into the workspace to assemble your team, then start the simulation to see them in action.",
-    employeesBank: "Employees Bank",
-    workspace: "Workspace",
-    startSimulation: "Start Simulation",
-    theLab: "The Lab",
-
     // About Us Page
     aboutUs: "About Us",
-    aboutUsTitle: "About Us: A New Era of Digital Sovereignty",
-    aboutUsOpeningTitle: "Who We Are: A New Era of Digital Sovereignty",
-    aboutUsOpeningContent: "We are not just a technology company. We are architects of a new paradigm where businesses own their digital capabilities, moving from renting transient AI services to owning a permanent, intelligent workforce.",
-    aboutUsCreedTitle: "Our Creed: Absolute Sovereignty and Unlimited Execution",
-    aboutUsCreedContent: "Our philosophy is built on three pillars: 1) Full Ownership: You own the AI, the data, and the operational logic. 2) Unrestricted Control: Your AI works on your terms, without external dependencies. 3) Infinite Potential: An AI workforce that grows with you, continuously learning and adapting.",
-    aboutUsPathsTitle: "The Three Paths to Sovereignty",
-    aboutUsPathsContent: "The Lab (Experiment and learn), The Fast Track (Deploy pre-built AI employees), The Ultimate Solution (Custom-built AI ecosystems). Each path is a step towards complete digital independence.",
-    aboutUsVisionTitle: "The Vision: You are the Maestro. This is Your Orchestra.",
-    aboutUsVisionContent: "We provide the instruments, the stage, and the score. You conduct the symphony. Your vision, powered by your AI orchestra, will redefine what's possible in your industry.",
-    dashboard: "Dashboard",
-    logout: "Logout"
+    aboutUsContent: `من نحن: انتهى عصر استخدام الذكاء، لقد بدأ عصر قيادته في عصر تُبنى فيه الإمبراطوريات على البيانات، لا تزال معظم الشركات تعيش في ظل وهم السيطرة. إنها تُجبر على استئجار ذكائها من سحابة بعيدة، وتخضع لنموذج يخلق تبعية أبدية، وتكاليف لا تنتهي، ويهدد أقدس أصولها: سيادتها على بياناتها وعملياتها الفكرية.
+
+هذا ليس شراكة. إنه قيد رقمي.
+
+لهذا السبب، وُجدت NAS AI. نحن لا نتبع القواعد، بل نصنعها. لقد تأسسنا على مبدأ ثوري: الذكاء ليس خدمة تُستهلك، بل هو قوة تُمتلك، وأوركسترا تُقاد.
+
+مسارك نحو السيادة الرقمية نحن ندرك أن كل قائد وكل شركة لهما رحلة مختلفة. لذلك، لم نعد نقدم منتجًا واحدًا، بل بنينا مسارًا كاملاً يأخذك من التجربة الأولى وحتى تحقيق السيادة المطلقة.
+
+المسار الأول: المختبر - اكتشف المايسترو في داخلك نحن نفتح لك أبواب المسرح. عبر منصتنا التفاعلية، ندعوك لتجربة دور القائد مجانًا. صمم أوركسترا الموظفين الرقميين الخاصة بك، وكلفها بالمهام، وشاهد محاكاة حية لقوة التنفيذ الموازي. هذه ليست لعبة، بل هي ساحة تدريبك لتتعلم فن قيادة الذكاء، وتكتشف القوة الكامنة في داخلك.
+
+المسار الثاني: المسار السريع - استأجر فرق النخبة عندما تتجاوز حاجتك حدود التجربة وتتطلب نتائج فورية، نقدم لك حلاً حاسمًا. يمكنك الآن استئجار فرق متخصصة من أوركسترا NAS AI الرقمية عبر باقات خدماتنا. سواء كنت تحتاج إلى حملة تسويقية آلية أو تحليل بيانات ضخمة، فإن فرق النخبة لدينا جاهزة لتنفيذ مهامك بدقة وسرعة فائقة، مما يثبت لك قيمة الذكاء الموجه قبل الالتزام بالاستثمار الكامل.
+
+المسار الثالث: الحل النهائي - امتلك الأوركسترا للأبد هذا ليس للجميع. هذا للقلة التي لا تقبل بأنصاف الحلول. للشركات والمؤسسات التي تدرك أن القوة الحقيقية لا تُستأجر ولا تُشارك، بل تُمتلك بالكامل.
+
+نقدم لك الحل النهائي: عقل NAS AI المادي. حصن منيع من القوة الحاسوبية يسكنه جيشك الرقمي الكامل، ويعمل داخل جدرانك بسيادة مطلقة وبدون أي اتصال بالإنترنت. هنا، أنت لا تقود الأوركسترا فحسب، بل تمتلك المسرح والقاعة والجمهور. إنها الملكية الكاملة. الأمان المطلق. السلطة التي لا تقبل الجدال.
+
+المسار الرابع: الفرصة الجديدة - كن أنت المحتوى رؤيتنا للسيادة الرقمية لا تتوقف عند حدود الشركات. نحن نؤمن بتمكين الأفراد أيضًا. خدمة "بع وجهك" هي امتداد لفلسفتنا، حيث نحوّل الهوية الشخصية إلى أصل رقمي سيادي. نحن نخلق اقتصادًا جديدًا يمكن فيه للأفراد الطموحين تحويل وجوههم إلى علامات تجارية، وتحقيق دخل مادي من هويتهم الرقمية بأمان وثقة، بينما نقوم نحن ببناء وإدارة المحتوى الذكي.
+
+رؤيتنا: مستقبلك، بقيادتك أنت في NAS AI، نحن لا نبني أدوات، بل نمكّن القادة. سواء كنت مستكشفًا فضوليًا، أو قائدًا عمليًا يبحث عن نتائج سريعة، أو استراتيجيًا يطمح للسيادة الأبدية، فإن رحلتك نحو إتقان فن التنفيذ تبدأ هنا.
+
+أنت المايسترو. وهذه هي أوركستراك. حان وقت العزف.`
   },
   ar: {
     // Showroom Page
@@ -390,8 +374,8 @@ export const translations: Record<'en' | 'ar', Translation> = {
     contact: "اتصل بنا",
     login: "تسجيل الدخول",
     signup: "التسجيل",
-    mainHeadline: "توقف عن استئجار الذكاء الاصطناعي. امتلك قوتك العاملة.",
-    subHeadline: "مُصممة بتقنيات اليوم المثبتة، لتقديم القوى العاملة للغد.",
+    mainHeadline: "أول موظف ذكاء اصطناعي حقيقي في العالم للمهام المكتبية",
+    subHeadline: "هنا القوى العاملة الرقمية",
     exploreShowroom: "استكشف صالة العرض",
     aiEmployeeTitle: "الموظف الآلي - ليس مجرد كمبيوتر",
     aiEmployeeDesc: "نحن لا نبيع كمبيوتر عادي أو تطبيق ذكي. نحن نقدم لك موظفاً آلياً ثابتاً يستطيع أداء جميع المهام المكتبية بكفاءة تفوق الموظف البشري.",
@@ -518,27 +502,29 @@ export const translations: Record<'en' | 'ar', Translation> = {
     getStarted: "ابدأ الآن",
     learnMore: "اعرف المزيد",
 
-    // Orchestra Page
-    orchestraTitle: "المختبر: كوّن أوركسترا الذكاء الاصطناعي الخاصة بك",
-    orchestraSubtitle: "اسحب وأفلت الموظفين الرقميين في مساحة العمل لتجميع فريقك، ثم ابدأ المحاكاة لرؤيتهم أثناء العمل.",
-    employeesBank: "بنك الموظفين",
-    workspace: "مساحة العمل",
-    startSimulation: "بدء المحاكاة",
-    theLab: "المختبر",
-
     // About Us Page
     aboutUs: "من نحن",
-    aboutUsTitle: "من نحن: عهد جديد من السيادة الرقمية",
-    aboutUsOpeningTitle: "من نحن: عهد جديد من السيادة الرقمية",
-    aboutUsOpeningContent: "نحن لسنا مجرد شركة تقنية. نحن مهندسو نموذج جديد حيث تمتلك الشركات قدراتها الرقمية، وتنتقل من استئجار خدمات الذكاء الاصطناعي العابرة إلى امتلاك قوة عاملة ذكية ودائمة.",
-    aboutUsCreedTitle: "عقيدتنا: السيادة المطلقة والتنفيذ غير المحدود",
-    aboutUsCreedContent: "تقوم فلسفتنا على ثلاث ركائز: 1) الملكية الكاملة: أنت تمتلك الذكاء الاصطناعي والبيانات والمنطق التشغيلي. 2) التحكم غير المقيد: يعمل الذكاء الاصطناعي الخاص بك وفقًا لشروطك، دون تبعيات خارجية. 3) إمكانات لا حصر لها: قوة عاملة في مجال الذكاء الاصطناعي تنمو معك وتتعلم وتتكيف باستمرار.",
-    aboutUsPathsTitle: "المسارات الثلاثة للسيادة",
-    aboutUsPathsContent: "المختبر (جرب وتعلم)، المسار السريع (انشر موظفي الذكاء الاصطناعي المعدين مسبقًا)، الحل النهائي (أنظمة ذكاء اصطناعي مخصصة). كل مسار هو خطوة نحو الاستقلال الرقمي الكامل.",
-    aboutUsVisionTitle: "الرؤية: أنت المايسترو. وهذه هي أوركستراك.",
-    aboutUsVisionContent: "نحن نقدم الآلات والمسرح والنتيجة. وأنت تقود السيمفونية. رؤيتك، مدعومة بأوركسترا الذكاء الاصطناعي الخاصة بك، ستعيد تعريف ما هو ممكن في مجال عملك.",
-    dashboard: "لوحة التحكم",
-    logout: "تسجيل الخروج"
+    aboutUsContent: `من نحن: انتهى عصر استخدام الذكاء، لقد بدأ عصر قيادته في عصر تُبنى فيه الإمبراطوريات على البيانات، لا تزال معظم الشركات تعيش في ظل وهم السيطرة. إنها تُجبر على استئجار ذكائها من سحابة بعيدة، وتخضع لنموذج يخلق تبعية أبدية، وتكاليف لا تنتهي، ويهدد أقدس أصولها: سيادتها على بياناتها وعملياتها الفكرية.
+
+هذا ليس شراكة. إنه قيد رقمي.
+
+لهذا السبب، وُجدت NAS AI. نحن لا نتبع القواعد، بل نصنعها. لقد تأسسنا على مبدأ ثوري: الذكاء ليس خدمة تُستهلك، بل هو قوة تُمتلك، وأوركسترا تُقاد.
+
+مسارك نحو السيادة الرقمية نحن ندرك أن كل قائد وكل شركة لهما رحلة مختلفة. لذلك، لم نعد نقدم منتجًا واحدًا، بل بنينا مسارًا كاملاً يأخذك من التجربة الأولى وحتى تحقيق السيادة المطلقة.
+
+المسار الأول: المختبر - اكتشف المايسترو في داخلك نحن نفتح لك أبواب المسرح. عبر منصتنا التفاعلية، ندعوك لتجربة دور القائد مجانًا. صمم أوركسترا الموظفين الرقميين الخاصة بك، وكلفها بالمهام، وشاهد محاكاة حية لقوة التنفيذ الموازي. هذه ليست لعبة، بل هي ساحة تدريبك لتتعلم فن قيادة الذكاء، وتكتشف القوة الكامنة في داخلك.
+
+المسار الثاني: المسار السريع - استأجر فرق النخبة عندما تتجاوز حاجتك حدود التجربة وتتطلب نتائج فورية، نقدم لك حلاً حاسمًا. يمكنك الآن استئجار فرق متخصصة من أوركسترا NAS AI الرقمية عبر باقات خدماتنا. سواء كنت تحتاج إلى حملة تسويقية آلية أو تحليل بيانات ضخمة، فإن فرق النخبة لدينا جاهزة لتنفيذ مهامك بدقة وسرعة فائقة، مما يثبت لك قيمة الذكاء الموجه قبل الالتزام بالاستثمار الكامل.
+
+المسار الثالث: الحل النهائي - امتلك الأوركسترا للأبد هذا ليس للجميع. هذا للقلة التي لا تقبل بأنصاف الحلول. للشركات والمؤسسات التي تدرك أن القوة الحقيقية لا تُستأجر ولا تُشارك، بل تُمتلك بالكامل.
+
+نقدم لك الحل النهائي: عقل NAS AI المادي. حصن منيع من القوة الحاسوبية يسكنه جيشك الرقمي الكامل، ويعمل داخل جدرانك بسيادة مطلقة وبدون أي اتصال بالإنترنت. هنا، أنت لا تقود الأوركسترا فحسب، بل تمتلك المسرح والقاعة والجمهور. إنها الملكية الكاملة. الأمان المطلق. السلطة التي لا تقبل الجدال.
+
+المسار الرابع: الفرصة الجديدة - كن أنت المحتوى رؤيتنا للسيادة الرقمية لا تتوقف عند حدود الشركات. نحن نؤمن بتمكين الأفراد أيضًا. خدمة "بع وجهك" هي امتداد لفلسفتنا، حيث نحوّل الهوية الشخصية إلى أصل رقمي سيادي. نحن نخلق اقتصادًا جديدًا يمكن فيه للأفراد الطموحين تحويل وجوههم إلى علامات تجارية، وتحقيق دخل مادي من هويتهم الرقمية بأمان وثقة، بينما نقوم نحن ببناء وإدارة المحتوى الذكي.
+
+رؤيتنا: مستقبلك، بقيادتك أنت في NAS AI، نحن لا نبني أدوات، بل نمكّن القادة. سواء كنت مستكشفًا فضوليًا، أو قائدًا عمليًا يبحث عن نتائج سريعة، أو استراتيجيًا يطمح للسيادة الأبدية، فإن رحلتك نحو إتقان فن التنفيذ تبدأ هنا.
+
+أنت المايسترو. وهذه هي أوركستراك. حان وقت العزف.`
   }
 };
 
