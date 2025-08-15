@@ -6,6 +6,7 @@ import { Button } from '../ui/button';
 import { useTranslation } from 'react-i18next';
 import { Globe, Menu, X, LogOut, LayoutDashboard, Store, Wrench } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext'; // Step 1: Import the useAuth hook
+import { ModeToggle } from './ThemeToggle';
 
 const Navbar = () => {
     const { t, i18n } = useTranslation();
@@ -82,6 +83,7 @@ const Navbar = () => {
                         <option value="ar">العربية</option>
                         <option value="en">English</option>
                     </select>
+                    <ModeToggle />
                     <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
                         {!loading && user ? (
                             <Button size="sm" variant="outline" onClick={handleSignOut}>
