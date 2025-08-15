@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { User, Settings, BarChart3, Database, CalendarClock, Cloud, Link2, HelpCircle, Sun, Moon, Monitor } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext'; // Assuming this context provides user info
+import { useAuth } from '@/contexts/AuthContext';
+import { useTheme } from '@/components/theme-provider';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // --- Reusable UI Components (Tailored for Dashboard) ---
 const Card = ({ children, className }: { children: React.ReactNode, className?: string }) => (
@@ -50,7 +52,10 @@ const ConnectedApps = () => <div><h2 className="text-2xl font-bold">Connected Ap
 const GetHelp = () => <div><h2 className="text-2xl font-bold">Get Help</h2><p className="text-slate-400 mt-2">Find help and support.</p></div>;
 
 const GeneralSettings = () => {
-    const [appearance, setAppearance] = useState('dark');
+    const { theme, setTheme } = useTheme();
+    const { language, setLanguage } = useLanguage();
+
+    // TODO: Connect these to a backend or persistent storage
     const [feature1, setFeature1] = useState(true);
     const [feature2, setFeature2] = useState(true);
 
@@ -65,16 +70,21 @@ const GeneralSettings = () => {
                     <div className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-slate-300 mb-2">Language</label>
-                            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-2 max-w-xs">
-                                <p className="text-white">English</p>
-                            </div>
+                            <select
+                                value={language}
+                                onChange={(e) => setLanguage(e.target.value as 'en' | 'ar')}
+                                className="bg-slate-800/50 border border-slate-700 rounded-lg p-2 max-w-xs text-white"
+                            >
+                                <option value="en">English</option>
+                                <option value="ar">العربية</option>
+                            </select>
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-slate-300 mb-2">Appearance</label>
                             <div className="flex gap-2">
-                                <Toggle pressed={appearance === 'light'} onClick={() => setAppearance('light')}><Sun className="w-5 h-5 mr-2" /> Light</Toggle>
-                                <Toggle pressed={appearance === 'dark'} onClick={() => setAppearance('dark')}><Moon className="w-5 h-5 mr-2" /> Dark</Toggle>
-                                <Toggle pressed={appearance === 'system'} onClick={() => setAppearance('system')}><Monitor className="w-5 h-5 mr-2" /> System</Toggle>
+                                <Toggle pressed={theme === 'light'} onClick={() => setTheme('light')}><Sun className="w-5 h-5 mr-2" /> Light</Toggle>
+                                <Toggle pressed={theme === 'dark'} onClick={() => setTheme('dark')}><Moon className="w-5 h-5 mr-2" /> Dark</Toggle>
+                                <Toggle pressed={theme === 'system'} onClick={() => setTheme('system')}><Monitor className="w-5 h-5 mr-2" /> System</Toggle>
                             </div>
                         </div>
                     </div>
